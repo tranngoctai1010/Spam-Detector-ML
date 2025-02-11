@@ -1,141 +1,66 @@
-### File: modules/__init__.py
+import yaml
+import logging
+from sklearn.metrics import classification_report, ConfusionMatrixDisplay
+from modules.train_models.base_trainer import BaseTrainer
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import LinearSVC
+from sklearn.naive_bayes import GaussianNB
+import matplotlib.pyplot as plt
 
-from .preprocess import load_and_clean_data, encode_labels, split_data
-from .train import build_pipeline, train_model, save_model
-from .evaluate import evaluate_model
+class TrainClassification(BaseTrainer):
+    """
+    TrainClassification extends BaseTrainer for classification tasks.
 
-__all__ = [
-    "load_and_clean_data",
-    "encode_labels",
-    "split_data",
-    "build_pipeline",
-    "train_model",
-    "save_model",
-    "evaluate_model"
-]
+    Methods:
+        evaluate(): Evaluates the classification model and returns a classification report.
+        plot_confusion_matrix(): Displays the confusion matrix.
+    """
+    def __init__(self, x_train, x_test, y_train, y_test, config_path='configs/pipeline_config.yaml'):
+        # Load config from YAML file
+        with open(config_path, 'r') as file:
+            config = yaml.safe_load(file)
 
+        self.scoring = config['training']['scoring']
+        self.param_grids = config['hyperparameters']
+        self.random_state = config['data']['random_state']
 
-### File: modules/preprocess.py
+        # Define available models
+        self.available_models = {
+            "LogisticRegression": LogisticRegression(max_iter=1000, random_state=self.random_state),
+            "RandomForestClassifier": RandomForestClassifier(random_state=self.random_state),
+            "LinearSVC": LinearSVC(max_iter=1000, random_state=self.random_state),
+            "GaussianNB": GaussianNB()
+        }
 
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+        self.x_train = x_train
+        self.x_test = x_test
+        self.y_train = y_train
+        self.y_test = y_test
 
-def load_and_clean_data(filepath):
-    data = pd.read_csv(filepath)
-    data = data.dropna()
-    return data
+        super().__init__(x_train, x_test, y_train, y_test, self.scoring, self.available_models, self.param_grids)
 
-def encode_labels(data, target_column="label"):
-    labelencoder = LabelEncoder()
-    data[target_column] = labelencoder.fit_transform(data[target_column])
-    return data, labelencoder
+    def train(self):
+        """
+        Train all specified models and select the best one.
+        """
+        logging.info(f"Training models with scoring: {self.scoring}")
+        self.train_model()  # Train all models defined in available_models
 
-def split_data(data, text_column="text", target_column="label", test_size=0.2, random_state=42):
-    from sklearn.model_selection import train_test_split
-    x = data[text_column]
-    y = data[target_column]
-    return train_test_split(x, y, test_size=test_size, random_state=random_state, stratify=y)
+    def evaluate(self):
+        """
+        Evaluates the best trained classification model and returns a classification report.
+        """
+        if self.y_predict is None:
+            self.predict()
+        report = classification_report(self.y_test, self.y_predict)
+        logging.info(f"Classification Report for Best Model:\n{report}")
+        print(report)
 
-
-### File: modules/train.py
-
-from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_selection import SelectPercentile, chi2
-from sklearn.linear_modl import LogisticRegression
-import joblib
-
-def build_pipeline():
-    return Pipeline(steps=[
-        ("vectorizer", TfidfVectorizer(stop_words="english", ngram_range=(1,2), max_features=10000)),
-        ("feature_selector", SelectPercentile(chi2, percentile=50)),
-        ("model", LogisticRegression(max_iter=1000))
-    ])
-
-def train_model(pipeline, x_train, y_train):
-    pipeline.fit(x_train, y_train)
-    return pipeline
-
-
-def save_model(pipeline, model_path="models/spam_classifier.pkl"):
-    joblib.dump(pipeline, model_path)
-
-
-### File: modules/evaluate.py
-
-from sklearn.metrics import classification_report
-
-def evaluate_model(pipeline, x_test, y_test):
-    y_pred = pipeline.predict(x_test)
-    report = classification_report(y_test, y_pred)
-    print(report)
-    return report
-
-
-### File: scripts/run_pipeline.py
-
-from modules import load_and_clean_data, encode_labels, split_data, build_pipeline, train_model, save_model, evaluate_model
-
-# Load and preprocess data
-data = load_and_clean_data("data/spam_Emails_data.csv")
-data, labelencoder = encode_labels(data)
-
-# Split data
-x_train, x_test, y_train, y_test = split_data(data)
-
-# Build and train model
-pipeline = build_pipeline()
-pipeline = train_model(pipeline, x_train, y_train)
-
-# Evaluate model
-evaluate_model(pipeline, x_test, y_test)
-
-# Save model
-save_model(pipeline)
-
-
-### File: requirements.txt
-pandas
-scikit-learn
-joblib
-
-
-### File: README.md
-# Spam Email Classifier
-
-This project builds a spam email classifier using Logistic Regression and TF-IDF vectorization.
-
-## Project Structure
-
-```
-/project
-├── main.py                  # Run the full system
-├── requirements.txt         # Required libraries
-├── README.md                # Project documentation
-├── data/                    # Dataset folder
-│   └── spam_Emails_data.csv # Spam dataset
-├── models/                  # Saved trained models
-│   └── spam_classifier.pkl  # Trained model
-├── modules/                 # Logic modules
-│   ├── preprocess.py        # Data preprocessing
-│   ├── train.py             # Model training
-│   ├── evaluate.py          # Model evaluation
-├── scripts/                 # Execution scripts
-│   └── run_pipeline.py      # Full pipeline execution
-```
-
-## How to Run
-
-1. Install dependencies:
-```
-pip install -r requirements.txt
-```
-
-2. Run the full pipeline:
-```
-python scripts/run_pipeline.py
-```
-
----
-
-Vậy là bạn đã chia nhỏ code thành các module rõ ràng để dễ quản lý và mở rộng sau này!
+    def plot_confusion_matrix(self):
+        """
+        Displays the confusion matrix for the best trained model.
+        """
+        disp = ConfusionMatrixDisplay.from_estimator(self.best_estimator, self.x_test, self.y_test)
+        plt.title(f'Confusion Matrix - Best Model')
+        plt.show()

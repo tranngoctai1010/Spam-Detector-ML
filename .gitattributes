@@ -1,3 +1,0 @@
-data/email.csv filter=lfs diff=lfs merge=lfs -text
-data/emails.csv filter=lfs diff=lfs merge=lfs -text
-data/* filter=lfs diff=lfs merge=lfs -text
