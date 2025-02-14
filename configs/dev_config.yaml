@@ -1,53 +1,35 @@
-data:
-  random_state: 42
-  test_size: 0.2
-  input_path: "data/raw/sms_spam.csv"  # Đường dẫn dữ liệu gốc
-  processed_path: "data/processed/cleaned_sms.csv"  # Đường dẫn dữ liệu đã xử lý
+modules/:
+  training_modules/:
 
-preprocessing:
-  remove_stopwords: True
-  lowercase: True
-  remove_punctuation: True
-  vectorization:
-    method: "tfidf"  # Hoặc "count"
-    max_features: 5000
+    base_trainer.py:
+      searchCV:
+        n_jobs: -1
+        cv: 5
+        verbose: 3
+        n_iter: 10
 
-training:
-  model_type: "RandomForestClassifier"  # Thay đổi thành "LogisticRegression", "LinearSVC", hoặc "GaussianNB"
-  scoring: "accuracy"
-  cross_validation_folds: 5
-  save_model_path: "models/spam_classifier.pkl"  # Đường dẫn lưu mô hình
+    classification.py:
 
-hyperparameters:
-  LogisticRegression:
-    C: [0.1, 1, 10]
-    solver: ["liblinear", "lbfgs"]
+      random_state: 42
+      scoring: "accuracy"
 
-  RandomForestClassifier:
-    n_estimators: [100, 200]
-    max_depth: [5, 10]
+      param_grids:
+        LogisticRegression: 
+          C: [0.1, 1, 10]
+          solver: ["liblinear", "lbfgs"]             
 
-  LinearSVC:
-    C: [0.01, 0.1, 1]
-    dual: [True, False]
-
-  GaussianNB:
-    var_smoothing: [1.0e-9, 1.0e-8]
-
-prediction:
-  load_model_path: "models/spam_classifier.pkl"  # Đường dẫn mô hình để dự đoán
-  output_path: "data/processed/predictions.csv"  # Đường dẫn lưu kết quả dự đoán
-
-api:
-  host: "127.0.0.1"
-  port: 5000
-  debug: True
-
-logging:
-  level: "INFO"
-  log_file: "logs/pipeline.log"
-  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-
-testing:
-  test_data_path: "data/processed/test_data.csv"
-  expected_output_path: "data/processed/expected_output.csv"
+        RandomForestClassifier: 
+          n_estimators: [100, 200, 300, 500]
+          max_depth: [5, 10, 15]
+          min_samples_split: [2, 5, 10]
+          min_samples_leaf: [1, 2, 4]
+          max_features: ["sqrt", "log2", None]
+          bootstrap: [True, False]
+        
+        LinearSVC:
+          C: [0.01, 0.1, 1, 10, 100]
+          max_iter: [1000, 5000, 10000]
+          dual: [True, False]
+        
+        GaussianNB: 
+          var_smoothing: [0.0000000010, 0.0000000100, 0.0000001000]        # [1e-9, 1e-8, 1e-7] Fix this error

@@ -1,1 +1,2 @@
-print("hello world")
+
+logging.basicConfig(level=logging.INFO)

@@ -32,6 +32,10 @@ Cập nhật tài liệu trong README.md.
 ├── main.py                      # Chạy toàn bộ hệ thống (bao gồm cả ứng dụng web)
 ├── requirements.txt             # Các thư viện cần thiết
 ├── README.md                    # Tài liệu dự án
+├── /docs/
+|   ├──architecture.md       # Mô tả kiến trúc hệ thống
+|   ├── api_docs.md           # Tài liệu API chi tiết
+|   ├── usage_guide.md        # Hướng dẫn sử dụng chi tiết
 │
 ├── data/                        # Dữ liệu gốc và xử lý
 │   ├── raw/                     # Dữ liệu gốc chưa xử lý
@@ -48,7 +52,7 @@ Cập nhật tài liệu trong README.md.
 │   │   ├── base_trainer.py      # Lớp cơ bản để huấn luyện mô hình 
 │   │   ├── classification.py    # Xây dựng và huấn luyện mô hình phân loại
 │   │   ├── regression.py        # Xây dựng và huấn luyện mô hình hồi quy
-│   ├── predict.py               # Dự đoán tin nhắn mới 
+│   ├── predict.py               # Dự đoán tin nhắn mới
 │   ├── evaluate.py              # Đánh giá mô hình
 │   ├── utils.py                 # Các hàm tiện ích dùng chung
 │
@@ -62,11 +66,16 @@ Cập nhật tài liệu trong README.md.
 │   ├── predict_message.py       # Dự đoán tin nhắn độc lập
 │
 ├── configs/                     # Cấu hình dự án
-│   configs/
-|   ├── dev_config.yaml
-|   ├── test_config.yaml
-|   |── prod_config.yaml
+|   ├── dev_config.yaml          # Cấu hình cho môi trường phát triển.
+|   ├── test_config.yaml         # Cấu hình dùng để kiểm thử (testing).
+|   |── prod_config.yaml         # Cấu hình cho môi trường sản phẩm (Production), tức là phiên bản chạy thực tế cho người dùng.
 │   ├── app_config.yaml          # Cấu hình ứng dụng web
+|
+├── logs/
+│   ├── app.log                  # Log chính của ứng dụng web
+│   ├── error.log                # Log riêng cho các lỗi nghiêm trọng
+│   ├── pipeline.log             # Log cho quá trình xử lý pipeline
+│   ├── dev.log                  # Log cho quá trình xử lý pipeline
 │
 ├── tests/                       # Kiểm thử (Unit Tests & Integration Tests)
 │   ├── test_preprocess.py       # Kiểm thử xử lý dữ liệu
@@ -81,3 +90,16 @@ Cập nhật tài liệu trong README.md.
 ├── .gitignore                   # Bỏ qua các file không cần thiết khi push lên Git
 └── setup.py                     # Đóng gói dự án như một thư viện (nếu cần)
 
+
+
+FileNotFoundError: Khi bạn cố mở một file không tồn tại.
+KeyError: Khi truy cập một key không tồn tại trong dictionary.
+ValueError: Khi truyền giá trị không hợp lệ vào hàm.
+TypeError: Khi sử dụng sai kiểu dữ liệu.
+
+✔ Cấu trúc code rõ ràng (OOP, module-based) → Bạn đã có!
+✔ Quản lý logging, config file chuẩn → Chỉ cần tối ưu thêm!
+✔ Có Unit Test (pytest) để đảm bảo không bug khi update → Bạn cần bổ sung!
+✔ Xử lý lỗi (try-except, logging, raise exception đúng cách) → Bạn đã có!
+✔ Hỗ trợ training hiệu quả (Parallel processing, GPU nếu cần) → Bạn có thể tối ưu thêm!
+✔ Tự động hóa pipeline (CI/CD, MLflow, Docker, v.v.) → Bước cuối cùng để thành dự án lớn!

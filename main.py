@@ -127,7 +127,7 @@ from sklearn.svm import LinearSVC, SVR
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsRegressor
 
-class TrainClassification(BaseTrainer:
+class TrainClassification(BaseTrainer):
     """
     TrainClassification extends BaseTrainer for classification tasks.
 
