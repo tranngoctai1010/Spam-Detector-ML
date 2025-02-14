@@ -1,4 +1,5 @@
 modules/:
+  # config for training modulse forder
   training_modules/:
 
     base_trainer.py:
@@ -33,3 +34,14 @@ modules/:
         
         GaussianNB: 
           var_smoothing: [0.0000000010, 0.0000000100, 0.0000001000]        # [1e-9, 1e-8, 1e-7] Fix this error
+
+  # Config for utils file
+  utils.py:
+    save_model: 
+      filename: ""
+    load_model: 
+      filename: ""
+    save_gridsearch:
+      filename: ""
+    load_gridsearch:
+      filename: ""

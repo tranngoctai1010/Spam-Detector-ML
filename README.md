@@ -50,10 +50,10 @@ Cập nhật tài liệu trong README.md.
 │   ├── preprocess.py            # Xử lý dữ liệu văn bản
 │   ├── train_models/   
 │   │   ├── base_trainer.py      # Lớp cơ bản để huấn luyện mô hình 
-│   │   ├── classification.py    # Xây dựng và huấn luyện mô hình phân loại
+│   │   ├── classification.py    # Xây dựng và huấn luyện mô hình phân loại + dự đoán và đánh giá 
 │   │   ├── regression.py        # Xây dựng và huấn luyện mô hình hồi quy
-│   ├── predict.py               # Dự đoán tin nhắn mới
-│   ├── evaluate.py              # Đánh giá mô hình
+│   ├── 
+│   ├── 
 │   ├── utils.py                 # Các hàm tiện ích dùng chung
 │
 ├── notebooks/                   # Phân tích và thử nghiệm dữ liệu
