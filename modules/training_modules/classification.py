@@ -41,9 +41,37 @@ class TrainClassification(BaseTrainer):
     """
     TrainClassification extend BaseTrainer for classification tasks.
 
+    Arguments:
+        x_train, x_test, y_train, y_test: 
+            Training and testing datasets.
+
+    Atributes:
+        scoring: 
+            Metric is used to evaluate model.
+
+        param_grids: 
+            A dictionary of hyperparameters for the optimization search process.
+
+        random_state:
+            Used to control the randomness of the algorithm.
+
+        models: Store algorihms
+
     Methods:
-        evaluate(): Evaluates classification model and return classification report.
-        plot_confusion_matrix(): Displays the confusion matrix.
+        train(): 
+            Train all sefecified models and select the best one.
+
+            Arguments: 
+                use_random_search (bool): If True, uses RandomizedSearchCV instead of GridSearchCV.
+
+        predict(): 
+            Uses the best model to predict test set (method of BaseTrainer).
+            
+        evaluate():  
+            Evaluates classification model and return classification report.
+
+        plot_confusion_matrix(): 
+            Displays the confusion matrix.
     """
     def __init__(self, x_train, x_test, y_train, y_test):
 
@@ -52,7 +80,7 @@ class TrainClassification(BaseTrainer):
         self.random_state = config["random_state"]
 
         try:
-            available_models = {
+            self.models = {
                 "LogisticRegression": LogisticRegression(max_iter=1000, random_state=self.random_state),
                 "RandomForestClassifier": RandomForestClassifier(random_state=self.random_state),
                 "LinearSVC": LinearSVC(max_iter=1000, random_state=self.random_state),
@@ -71,19 +99,15 @@ class TrainClassification(BaseTrainer):
             raise
 
         #Call the parent class constructor 
-        super().__init__(x_train, x_test, y_train, y_test, self.scoring, available_models, self.param_grids)
+        super().__init__(x_train, x_test, y_train, y_test, self.scoring, self.models, self.param_grids)
 
-    def train(self):
-        """
-        Train all sefecified models and select the best one.
-        """
-        logging.info("Training model with scoring %s.", self.scoring)
-        self.train_model()      #Train all models defined in available_models
+    def train(self, use_random_search = False):
+
+        logging.info("Training model with scoring: %s.", self.scoring)
+        self.train_model()      #Train all models defined in self.models
 
     def evaluate(self):
-        """
-        Evaluate the best classificatoin model and return classification report.
-        """
+
         try:
             if self.y_predict is None:
                 self.predict()
@@ -94,16 +118,14 @@ class TrainClassification(BaseTrainer):
             raise
 
     def plot_confusion_matrix(self):
-        """
-        Display confusion matrix for the best trained model.
-        """
+
         try:
             display = ConfusionMatrixDisplay.from_estimator(self.best_estimator, self.x_test, self.y_test)
             plt.title("Confusion matrix - The best model")
             plt.show()
         except Exception as e:
             logging.error("Error displaying confusion matrix in plot_confusion_matrix():\n %s", e)
-
+            raise
 
 if __name__ == "__main__":
     from sklearn.datasets import make_classification

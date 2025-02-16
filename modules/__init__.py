@@ -1,9 +1,9 @@
-from .preprocess import load_and_clean_data, encode_target, split_data
+from .training_modules.classification import TrainClassification
+from .process_emails import process_emails
+from .utils import ModelHandler
 
 __all__ = [
-    #Preprocess.py
-    "load_and_clean_data",
-    "encode_target",
-    "split_data"
-    
+    "TrainClassification",
+    "process_emails",
+    "ModelHandler"
 ]

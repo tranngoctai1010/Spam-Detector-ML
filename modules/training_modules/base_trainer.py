@@ -39,20 +39,33 @@ class BaseTrainer:
     BaseTrainer is generic class to train machine learning models that use GridSearchCV or RandomizedGridSearchCV.
 
     Attributes:
-        x_train, x_test, y_train, y_test: Training and testing datasets.
-        scoring: Metric is used to evaluate model.
-        models: A dictionary that contains the model to be trained.
-        param_grids: A dictionary of hyperparameters for the optimization search process.
-        search_objects: Stores the GridSearchCV or RandomizedSearchCV for each model.
+        x_train, x_test, y_train, y_test: 
+            Training and testing datasets.
+
+        scoring: 
+            Metric is used to evaluate model.
+
+        models: 
+            A dictionary that contains the model to be trained.
+
+        param_grids: 
+            A dictionary of hyperparameters for the optimization search process.
+
+        search_objects: 
+            Stores the GridSearchCV or RandomizedSearchCV for each model. 
 
     Methods: 
-        train_model(): Trains and chooses the model based on evaluation metric.
-        predict(): Uses the best model to predict test set.
-        save_model(filename): Saves the best model to a file.
-        load_model(filename): Loads the model from a file.
-        save_gridsearch(filename): Saves the GridSearch object to a file.
-        load_gridsearch(filename): Loads the GridSearch object to a file.
-        validate_data(): Validate train set.
+        validate_data(): 
+            Validates if training data is not None.
+
+        train_model(): 
+            Trains multiple models using GridSearchCV or RandomizedSearchCV and select the best one based on scoring.
+
+            Arguments:
+                 use_random_search (bool): If True, uses RandomizedSearchCV instead of GridSearchCV.
+
+        predict():
+            Uses the best model to predict test set.
     """
     def __init__(self, x_train, x_test, y_train, y_test, scoring, models, param_grids):
         self.x_train = x_train
@@ -80,13 +93,12 @@ class BaseTrainer:
         except Exception as e:
             logging.error("Error during validation data in validate_data():\n %s", e)
 
-#jakjhflkjahdkfjhkdjshfklajwhsfkjhskdfsf
     def train_model(self, use_random_search=False):
         """
         Trains multiple models using GridSearchCV or RandomizedSearchCV and select the best one based on scoring.
 
         Arguments:
-            use_random_search (bool): If True, uses RandomizedSearchCV instead of GridSearchCV
+            use_random_search (bool): If True, uses RandomizedSearchCV instead of GridSearchCV.
         """
         try:
             self.validate_data()
