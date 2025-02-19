@@ -94,7 +94,7 @@ class ModelHandler:
             except Exception as e:
                 logging.error("Error when loading model:\n %s", e)
 
-        else:
+        else: 
             logging.warning("No have model to load.")
 
     def save_gridsearch(self, gridsearch_objects, filename):
@@ -104,7 +104,7 @@ class ModelHandler:
                 joblib.dump(gridsearch_objects, filename)
                 logging.info("GridSearchCV object has been saved to %s", filename)
             except Exception as e:
-                logging.error("Error when saving the GridSearchCv object:\n %s", e)
+                logging.error("Error when saving the GridSearchCv object:\n %s",e)
 
         else:
             logging.warning("No have GridSearchCV object to save.")
@@ -119,4 +119,4 @@ class ModelHandler:
                 logging.error("Error when loading GridSearchCV object:\n %s", e)
 
         else:
-            logging.warning("No have GridSearch to load.")
+            logging.warning("No have GridSearch to load.")s

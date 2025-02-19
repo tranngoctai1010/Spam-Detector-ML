@@ -6,6 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import LinearSVC
 from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB
 import matplotlib.pyplot as plt
 
 #Config logging
@@ -84,7 +85,8 @@ class TrainClassification(BaseTrainer):
                 "LogisticRegression": LogisticRegression(max_iter=1000, random_state=self.random_state),
                 "RandomForestClassifier": RandomForestClassifier(random_state=self.random_state),
                 "LinearSVC": LinearSVC(max_iter=1000, random_state=self.random_state),
-                "GaussianNB": GaussianNB()
+                "GaussianNB": GaussianNB(),
+                "classifier": MultinomialNB()
             }
         except KeyError as e:
             logging.error("Missing the key in config:\n %s", e)

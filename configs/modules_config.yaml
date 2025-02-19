@@ -18,7 +18,7 @@ training_modules/:
     param_grids:
       LogisticRegression: 
         C: [0.1, 1, 10]
-        solver: ["liblinear", "lbfgs"]        
+        solver: ["liblinear", "lbfgs"]
       RandomForestClassifier: 
         n_estimators: [100, 200, 300, 500]
         max_depth: [5, 10, 15]
@@ -32,6 +32,10 @@ training_modules/:
         dual: [True, False]
       GaussianNB: 
         var_smoothing: [0.0000000010, 0.0000000100, 0.0000001000]        # [1e-9, 1e-8, 1e-7] Fix this error
+      MultinomialNB:
+        alpha: [0.1, 0.5, 1.0, 5.0, 10.0]
+        fit_prior: [True, False]
+
 
   #Configuration of the regression.py file
   regression.py:
@@ -58,4 +62,3 @@ training_modules/:
         C: [0.1, 1, 10, 100],
         epsilon: [0.01, 0.1, 0.2],
         gamma: ["scale", "auto"]
-
