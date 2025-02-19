@@ -15,11 +15,11 @@ logging.basicConfig(
 
 
 # Load config YAML file
-config_path="configs/dev_config.yaml"
+config_path="configs/modules_config.yaml"
 try:
     with open(config_path, "r") as file:
         full_config = yaml.safe_load(file)
-        config = full_config["modules/"]["training_modules/"]["classification.py"] 
+        config = full_config["training_modules/"]["classification.py"] 
 except FileNotFoundError:
     logging.error("Config not found at %s. Please check file path.", config_path)
     raise
@@ -131,7 +131,6 @@ class BaseTrainer:
                     logging.critical("No valid model was successfully trained.")
                     raise RuntimeError("All models failed to train.")
 
-            return self.best_estimator
         except Exception as e:
             logging.critical("Critical error in train_model():\n %s", e)
             raise
@@ -143,9 +142,8 @@ class BaseTrainer:
         try:
             if self.best_estimator:
                 self.y_predict = self.best_estimator.predict(self.x_test)
-                return self.y_predict
             else:
                 raise ValueError(f"The model not trained. Call train_model() function first.")
-        except Exception as e:            
+        except Exception as e:
             logging.error("Error predict model in predict():\n %s", e)
             raise

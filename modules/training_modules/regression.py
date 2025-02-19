@@ -17,11 +17,11 @@ logging.basicConfig(
 )
 
 #Load config YAML file
-config_path="configs/dev_config.yaml"
+config_path="configs/modules_config.yaml"
 try:
     with open(config_path, "r") as file:
         full_config = yaml.safe_load(file)
-        config = full_config["modules/"]["training_modules/"]["regression.py"] 
+        config = full_config["training_modules/"]["regression.py"] 
 except FileNotFoundError:
     logging.error("Config not found at %s. Please check file path.", config_path)
     raise

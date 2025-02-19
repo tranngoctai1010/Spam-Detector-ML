@@ -1,23 +1,3 @@
-/project
-├── venv/                   # Môi trường ảo
-├── main.py
-├── requirements.txt
-├── README.md
-├── data/                                   
-├── models/
-├── modules/
-├── notebooks/
-├── scripts/
-├── configs/
-├── tests/
-
-
-
-Lưu mô hình trong modules/predict_response.py.
-Tạo file modules/use_model.py để dự đoán.
-Tạo file scripts/run_pipeline.py để chạy toàn bộ quy trình.
-Viết kiểm thử trong tests/test_predict_response.py.
-Cập nhật tài liệu trong README.md.
 
 /project
 ├── app/                         # Ứng dụng web
@@ -58,7 +38,7 @@ Cập nhật tài liệu trong README.md.
 │   ├── sms_analysis.ipynb       # Phân tích dữ liệu
 │
 ├── scripts/                     # Các script thực thi độc lập
-│   ├── preprocess_data.py       # Tiền xử lý dữ liệu
+│   ├── evaluate_message.py      # Đánh giá dữ model
 │   ├── train_model.py           # Huấn luyện mô hình
 │   ├── predict_message.py       # Dự đoán tin nhắn
 │   ├── run_pipeline.py          # Chạy toàn bộ pipeline
@@ -101,3 +81,68 @@ TypeError: Khi sử dụng sai kiểu dữ liệu.
 ✔ Tự động hóa pipeline (CI/CD, MLflow, Docker, v.v.) → Bước cuối cùng để thành dự án lớn!
 
 
+
+/project
+├── app/                         # Ứng dụng web
+│   ├── __init__.py
+│   ├── routes.py                # Định nghĩa các tuyến API
+│   ├── templates/               # Giao diện HTML
+│   ├── static/                  # Tài nguyên tĩnh (CSS, JS, hình ảnh)
+│   ├── api.py                   # API giao tiếp với mô hình
+│   ├── config.py                # Cấu hình ứng dụng web
+│
+├── main.py                      # Chạy toàn bộ hệ thống
+├── requirements.txt             # Danh sách thư viện cần thiết
+├── README.md                    # Tài liệu dự án
+│
+├── data/                        # Dữ liệu gốc và xử lý
+│   ├── raw/                     # Dữ liệu chưa xử lý
+│   ├── processed/               # Dữ liệu đã xử lý
+│   ├── email_spam.csv           # Bộ dữ liệu email spam
+│   ├── sms_spam.csv             # Bộ dữ liệu SMS spam
+│
+├── models/                      # Lưu trữ mô hình
+│   ├── email_spam_classifier.pkl # Mô hình phân loại email spam
+│   ├── sms_spam_classifier.pkl  # Mô hình phân loại SMS spam
+│
+├── modules/                     # Các module xử lý chính
+│   ├── __init__.py
+│   ├── preprocess.py            # Xử lý dữ liệu văn bản
+│   ├── train_models/            # Huấn luyện mô hình
+│   │   ├── base_trainer.py      # Lớp cơ bản để huấn luyện
+│   │   ├── email_classification.py # Huấn luyện mô hình email spam
+│   │   ├── sms_classification.py   # Huấn luyện mô hình SMS spam
+│   ├── utils.py                 # Các hàm tiện ích
+│
+├── scripts/                     # Các script thực thi độc lập
+│   ├── evaluate_message.py      # Đánh giá dự model
+│   ├── train_email_model.py     # Huấn luyện mô hình email spam
+│   ├── train_sms_model.py       # Huấn luyện mô hình SMS spam
+│   ├── predict_email.py         # Dự đoán email spam
+│   ├── predict_sms.py           # Dự đoán SMS spam
+│
+├── configs/                     # Cấu hình hệ thống
+│   ├── dev_config.yaml          # Cấu hình môi trường phát triển
+│   ├── test_config.yaml         # Cấu hình kiểm thử
+│   ├── prod_config.yaml         # Cấu hình môi trường sản phẩm
+│   ├── app_config.yaml          # Cấu hình ứng dụng web
+│   ├── model_config.yaml        # Cấu hình các mô hình (hyperparameters, path...)
+│
+├── logs/                        # Log hệ thống
+│   ├── app.log                  # Log chính của ứng dụng
+│   ├── error.log                # Log lỗi
+│   ├── pipeline.log             # Log pipeline
+│
+├── tests/                       # Kiểm thử hệ thống
+│   ├── test_preprocess.py          # Kiểm thử xử lý dữ liệu văn bản
+|   ├── test_train.py               # Kiểm thử huấn luyện mô hình
+|   ├── test_predict.py             # Kiểm thử dự đoán đầu ra
+|   ├── test_utils.py               # Kiểm thử các hàm tiện ích
+|   ├── test_api.py                 # Kiểm thử API của ứng dụng web
+│
+├── docker/                      # Cấu hình Docker
+│   ├── Dockerfile               # Dockerfile container hóa dự án
+│   ├── docker-compose.yml       # Cấu hình dịch vụ Docker
+│
+├── .gitignore                   # Bỏ qua các file không cần thiết
+└── setup.py                     # Đóng gói dự án thành thư viện (nếu cần)
