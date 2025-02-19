@@ -1,12 +1,8 @@
-# Configuration of the run_pipeline.py file
-run_pipeline.py:
+# Configuration of the train_emails_model.py file
+train_emails_model.py:
   save_model:
+  save_gridsearch:
+
+# Configuration of the predict_emails.py file
+predict_emails.py:
   load_model:
-  save_gridsearch:
-  load_gridsearch:
-
-
-# Configuration of the train_model.py file
-train_model.py:
-  save_model:
-  save_gridsearch:

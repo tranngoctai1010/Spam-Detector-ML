@@ -13,12 +13,16 @@ logging.basicConfig(
 )
 
 #Load configuration file
-file_path = "configs/scripts_config.yaml"
-with open(file_path, "r") as file:
-    full_config = yaml.safe_load(file)
-    config = full_config["train_model.py"]
+try:
+    file_path = "configs/scripts_config.yaml"
+    with open(file_path, "r") as file:
+        full_config = yaml.safe_load(file)
+        config = full_config["train_emails_model.py"]
+except Exception as e:
+    logging.error("Error when reading scripts_config.yaml file in train_emails_model.py file")
+    raise
     
-def run_pipeline():
+def train_emails_model():
     """
     Run the entire pipeline (processing, training, prediction, ...)
     """
@@ -39,5 +43,5 @@ def run_pipeline():
         logging.info("Starting to save gridsearch objects .....")
         model_handler.save_gridsearch(gridsearch_objects=model.search_objects, filename=config["save_gridsearch"])
     except Exception as e:
-        logging.error("Error when running train_model.py file.")
+        logging.error("Error when running train_emails_model.py file.")
         raise
