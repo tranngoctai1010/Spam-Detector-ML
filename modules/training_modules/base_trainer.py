@@ -20,15 +20,6 @@ try:
     with open(config_path, "r") as file:
         full_config = yaml.safe_load(file)
         config = full_config["training_modules/"]["classification.py"] 
-except FileNotFoundError:
-    logging.error("Config not found at %s. Please check file path.", config_path)
-    raise
-except KeyError as e:
-    logging.error("Missing key in configuration file:\n %s", e)
-    raise
-except yaml.YAMLError as e:
-    logging.error("Error parsing YAML file:\n %s", e)
-    raise 
 except Exception as e:
     logging.error("Error:\n %s", e)
     raise

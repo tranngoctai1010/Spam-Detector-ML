@@ -1,32 +1,28 @@
-import joblib
+#Built-in Python libraries
+import os
 import logging
-import yaml
-import os 
+import logging.config
 
-#Config logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename="logs/dev.log",
-    filemode='w',
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+#Third-party libraries
+import joblib
+import yaml
+
+
+def setup_logging(config_path="configs/logging_config.yaml"):
+    with open(config_path, "r") as file:
+        config = yaml.safe_load(file)
+        logging.config.dictConfig(config)
+
+def get_logger():
+    setup_logging()
+    return logging.getLogger(__name__)
 
 
 #Load config YAML file
-config_path="configs/modules_config.yaml"
 try:
-    with open(config_path, "r") as file:
+    with open(config_path="configs/modules_config.yaml", mode="r") as file:
         full_config = yaml.safe_load(file)
         config = full_config["training_modules/"]["classification.py"]
-except FileNotFoundError:
-    logging.error("Config not found at %s. Please check file path.", config_path)
-    raise
-except KeyError as e:
-    logging.error("Missing key in configuration file:\n %s", e)
-    raise
-except yaml.YAMLError as e:
-    logging.error("Error parsing YAML file:\n %s", e)
-    raise 
 except Exception as e:
     logging.error("Error when using dev_config.yaml file:\n %s", e)
     raise
@@ -119,4 +115,4 @@ class ModelHandler:
                 logging.error("Error when loading GridSearchCV object:\n %s", e)
 
         else:
-            logging.warning("No have GridSearch to load.")s
+            logging.warning("No have GridSearch to load.")

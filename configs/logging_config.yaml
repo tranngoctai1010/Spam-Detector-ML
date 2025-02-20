@@ -1,0 +1,55 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  detailed:
+    format: "[%(asctime)s] [%(levelname)s] %(name)s (%(filename)s:%(lineno)d) - %(message)s"
+
+filters:
+  only_info:
+    "()": logging.Filter
+    name: ""
+  only_error:
+    "()": logging.Filter
+    name: ""
+  only_critical:
+    "()": logging.Filter
+    name: ""
+
+handlers:
+  info_file_handler:
+    class: logging.FileHandler
+    level: INFO
+    formatter: detailed
+    filename: logs/info.log
+    filters: [only_info]
+
+  error_file_handler:
+    class: logging.FileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/error.log
+    filters: [only_error]
+
+  critical_file_handler:
+    class: logging.FileHandler
+    level: CRITICAL
+    formatter: detailed
+    filename: logs/critical.log
+    filters: [only_critical]
+
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: detailed
+    stream: ext://sys.stdout
+
+loggers:
+  app:
+    level: DEBUG
+    handlers: [console, info_file_handler, error_file_handler, critical_file_handler]
+    propagate: no
+
+root:
+  level: DEBUG
+  handlers: [console]
