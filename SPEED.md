@@ -28,21 +28,16 @@
 
 
 
-Monitoring trong AI bao gồm:
-Theo dõi hiệu suất mô hình:
+👨‍💻 AI Engineer – Xây model, tối ưu, huấn luyện.
+👨‍💻 MLOps Engineer – Lo phần deployment, pipeline, monitoring.
+👨‍💻 Backend Engineer – Lo API, database, logic hệ thống.
+👨‍💻 Frontend Engineer – Nếu có UI/UX thì cần luôn.
+👨‍💻 DevOps Engineer – Lo hạ tầng, scaling, CI/CD.
+📊 Data Engineer – Xử lý pipeline, data preprocessing.
 
-Độ chính xác (accuracy), độ lỗi (loss), precision, recall, F1-score…
-So sánh với baseline để xem có bị suy giảm không (model drift).
-Theo dõi tốc độ và tài nguyên hệ thống:
 
-Thời gian phản hồi của API (latency).
-Sử dụng CPU, GPU, RAM, ổ cứng.
-Mức tiêu thụ điện năng (nếu quan trọng).
-Theo dõi dữ liệu đầu vào:
 
-Kiểm tra dữ liệu có bị lệch phân phối so với dữ liệu train không.
-Phát hiện dữ liệu outlier hoặc bất thường.
-Cách triển khai Monitoring:
-Log hệ thống (app.log, error.log, pipeline.log).
-Prometheus + Grafana: Theo dõi hiệu suất mô hình trong thực tế.
-TensorBoard: Theo dõi quá trình train model.
+🚀 API backend để gọi model.
+🚀 Benchmarking để đo hiệu suất.
+🚀 Monitoring để giám sát khi chạy thực tế.
+🚀 Tự động hóa pipeline AI.

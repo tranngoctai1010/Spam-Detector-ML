@@ -1,83 +1,111 @@
 /project
-├── app/                         # Web application
+├── app/                          # Web application
 │   ├── __init__.py
-│   ├── routes.py                # API route definitions
-│   ├── templates/               # HTML templates
-│   ├── static/                  # Static assets (CSS, JS, images)
-│   ├── api.py                   # API for interacting with the model
-│   ├── config.py                # Web application configuration
+│   ├── routes.py                 # API route definitions
+│   ├── templates/                # HTML templates
+│   ├── static/                   # Static assets (CSS, JS, images)
+│   ├── api.py                     # API for interacting with the model
+│   ├── config.py                  # Web application configuration
 │
-├── main.py                      # Main entry point of the system
-├── requirements.txt             # List of required libraries
-├── README.md                    # Project documentation
-├── project_structure.md         # Project structure documentation
-├── logging_guide.md             # Logging message guidelines
-│
-├── data/                        # Raw and processed data
-│   ├── raw/                     # Unprocessed data
-│   ├── processed/               # Processed data
-│   ├── email_spam.csv           # Email spam dataset
-│   ├── sentiment_analysis.csv   # Sentiment analysis dataset
-│   ├── keyword_extraction.csv   # Keyword extraction dataset
-│
-├── models/                      # Stored machine learning models
-│   ├── email_spam_classifier.pkl # Email spam classifier model
-│   ├── sentiment_analyzer.pkl   # Sentiment analysis model
-│   ├── keyword_extractor.pkl    # Keyword extraction model
-│   ├── ner_model.pkl            # Named entity recognition (NER) model
-│
-├── modules/                     # Core processing modules
+├── src/                          # Source code of the project
 │   ├── __init__.py
-│   ├── preprocess.py            # Text data preprocessing
-│   ├── train_models/            # Model training scripts
-│   │   ├── base_trainer.py      # Base training class
-│   │   ├── email_classification.py # Train email spam classifier
-│   │   ├── sentiment_analysis.py   # Train sentiment analysis model
-│   │   ├── keyword_extraction.py   # Train keyword extraction model
-│   │   ├── ner_recognition.py       # Train named entity recognition model
-│   ├── utils.py                 # Utility functions
+│   ├── preprocess/               # Text preprocessing
+│   │   ├── __init__.py
+│   │   ├── text_cleaning.py       # Cleaning and tokenization
+│   │   ├── feature_engineering.py # Feature extraction
+│   │
+│   ├── models/                    # Machine Learning models
+│   │   ├── __init__.py
+│   │   ├── email_spam.py           # Email spam classifier
+│   │   ├── sentiment_analysis.py   # Sentiment analysis model
+│   │   ├── keyword_extraction.py   # Keyword extraction model
+│   │   ├── ner_model.py            # Named entity recognition (NER)
+│   │
+│   ├── inference/                  # Model inference
+│   │   ├── __init__.py
+│   │   ├── predict_email.py        # Predict email spam
+│   │   ├── predict_sentiment.py    # Predict sentiment of text
+│   │   ├── extract_keywords.py     # Extract keywords from text
+│   │   ├── recognize_entities.py   # Recognize named entities
+│   │
+│   ├── evaluation/                 # Model evaluation
+│   │   ├── __init__.py
+│   │   ├── metrics.py              # Accuracy, precision, recall, etc.
+│   │   ├── benchmark.py            # Performance benchmarking
+│   │   ├── baseline.py             # Baseline comparison
+│   │   ├── visualize.py            # Visualization of results
+│   │   ├── results/                # Store evaluation results
+│   │   │   ├── benchmark_results.csv
+│   │   │   ├── baseline_results.csv
+│   │
+│   ├── benchmarking/               # Performance benchmarking
+│   │   ├── __init__.py
+│   │   ├── local_tests/            # Tests on personal machine
+│   │   │   ├── test_latency.py
+│   │   │   ├── test_resource_usage.py
+│   │   │   ├── test_throughput.py
+│   │   │   ├── README.md
+│   │   ├── server_tests/           # Tests on server
+│   │   │   ├── test_latency.py
+│   │   │   ├── test_resource_usage.py
+│   │   │   ├── test_throughput.py
+│   │   │   ├── setup_monitoring.md
+│   │   │   ├── README.md
 │
-├── scripts/                     # Standalone execution scripts
-│   ├── evaluate_model.py        # Model evaluation
-│   ├── train_email_model.py     # Train email spam classifier
-│   ├── train_sentiment_model.py # Train sentiment analysis model
-│   ├── train_keyword_model.py   # Train keyword extraction model
-│   ├── train_ner_model.py       # Train named entity recognition model
-│   ├── predict_email.py         # Predict email spam
-│   ├── predict_sentiment.py     # Predict sentiment of text
-│   ├── extract_keywords.py      # Extract keywords from text
-│   ├── recognize_entities.py    # Recognize named entities in text
+├── scripts/                       # Standalone scripts
+│   ├── train_email_model.py        # Train email spam classifier
+│   ├── train_sentiment_model.py    # Train sentiment analysis model
+│   ├── train_keyword_model.py      # Train keyword extraction model
+│   ├── train_ner_model.py          # Train named entity recognition model
+│   ├── evaluate_model.py           # Evaluate models
 │
-├── configs/                     # System configurations
-│   ├── dev_config.yaml          # Development environment configuration
-│   ├── test_config.yaml         # Testing configuration
-│   ├── prod_config.yaml         # Production environment configuration
-│   ├── app_config.yaml          # Web application configuration
-│   ├── model_config.yaml        # Model configurations (hyperparameters, paths, etc.)
+├── tests/                         # Automated tests
+│   ├── __init__.py
+│   ├── test_preprocess.py         # Test preprocessing functions
+│   ├── test_models.py             # Test model functionality
+│   ├── test_inference.py          # Test model inference
+│   ├── test_api.py                # Test web API
+│   ├── test_utils.py              # Test utility functions
 │
-├── logs/                        # System logs
-│   ├── app.log                  # Main application log
-│   ├── error.log                # Error log
-│   ├── pipeline.log             # Pipeline log
+├── notebooks/                     # Jupyter notebooks for experimentation
+│   ├── exploratory_data_analysis.ipynb
+│   ├── model_training.ipynb
+│   ├── inference.ipynb
 │
-├── tests/                       # System testing
-│   ├── test_preprocess.py       # Test text preprocessing
-│   ├── test_train.py            # Test model training
-│   ├── test_predict.py          # Test model predictions
-│   ├── test_utils.py            # Test utility functions
-│   ├── test_api.py              # Test web API
+├── data/                          # Data storage
+│   ├── raw/                       # Raw unprocessed data
+│   ├── processed/                  # Processed data
+│   ├── email_spam.csv              # Email spam dataset
+│   ├── sentiment_analysis.csv      # Sentiment analysis dataset
+│   ├── keyword_extraction.csv      # Keyword extraction dataset
 │
-├── notebooks/                   # Jupyter notebooks for experiments and data analysis
-│   ├── exploratory_data_analysis.ipynb  # Data exploration
-│   ├── model_training.ipynb             # Model training notebook
-│   ├── inference.ipynb                   # Model inference notebook
+├── configs/                       # Configuration files
+│   ├── dev_config.yaml            # Development config
+│   ├── test_config.yaml           # Testing config
+│   ├── prod_config.yaml           # Production config
+│   ├── app_config.yaml            # Web application config
+│   ├── model_config.yaml          # Model hyperparameters
 │
-├── docker/                      # Docker configurations
-│   ├── Dockerfile               # Dockerfile for containerization
-│   ├── docker-compose.yml       # Docker service configurations
+├── logs/                          # System logs
+│   ├── app.log
+│   ├── error.log
+│   ├── pipeline.log
 │
-├── .gitignore                   # Ignore unnecessary files in Git
-└── setup.py                     # Setup script for packaging the project (if needed)
+├── docker/                        # Docker configuration
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│
+├── main.py                        # Main entry point
+├── requirements.txt               # Required dependencies
+├── README.md                      # Project documentation
+├── project_structure.md           # Explanation of the project structure
+├── logging_guide.md               # Logging guidelines
+├── .gitignore                      # Ignore unnecessary files
+└── setup.py                        # Setup script for packaging
+
+
+
+
 
 
 

@@ -1,31 +1,28 @@
+# Built-in Python libraries
+import logging 
+
+# Third-party libraries
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 from sklearn.metrics import classification_report, r2_score, mean_squared_error, ConfusionMatrixDisplay
-import joblib
-import matplotlib.pyplot as plt 
-import logging 
-import yaml
 
-#Config logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename="logs/dev.log",
-    filemode='w',
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+# Internal imports
+from src.modules.utils import LoggerManager, ConfigLoader
 
 
-# Load config YAML file
-config_path="configs/modules_config.yaml"
-try:
-    with open(config_path, "r") as file:
-        full_config = yaml.safe_load(file)
-        config = full_config["training_modules/"]["classification.py"] 
-except Exception as e:
-    logging.error("Error:\n %s", e)
-    raise
+# Create logger
+logger = LoggerManager.get_logger()
+
+# Get configuration 
+config = ConfigLoader.get_config(file_name="modules_config.yaml")
 
 
-class BaseTrainer:
+class ModelStorage:
+    def __init__(self):
+        self.best_estimator = None
+        self.search_objects = {}    #Store search objects for each model
+
+
+class BaseTrainer(ModelStorage):
     """
     BaseTrainer is generic class to train machine learning models that use GridSearchCV or RandomizedGridSearchCV.
 
@@ -59,6 +56,7 @@ class BaseTrainer:
             Uses the best model to predict test set.
     """
     def __init__(self, x_train, x_test, y_train, y_test, scoring, models, param_grids):
+        super().__init__()      # Call the __init__ of ModelStorage
         self.x_train = x_train
         self.x_test = x_test
         self.y_train = y_train
@@ -67,11 +65,9 @@ class BaseTrainer:
         self.models = models
         self.param_grids = param_grids
         self.best_model_name = None
-        self.best_estimator = None
         self.best_score = -1
         self.best_params = None
         self.y_predict = None
-        self.search_objects = {}    #Store search objects for each model
 
     def validate_data(self):
         """

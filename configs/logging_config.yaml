@@ -7,22 +7,42 @@ formatters:
 
 filters:
   only_info:
-    "()": logging.Filter
-    name: ""
+    "()": modules.log_filters.ExactLevelFilter
+    level: 20  # INFO
   only_error:
-    "()": logging.Filter
-    name: ""
+    "()": modules.log_filters.ExactLevelFilter
+    level: 40  # ERROR
   only_critical:
-    "()": logging.Filter
-    name: ""
+    "()": modules.log_filters.ExactLevelFilter
+    level: 50  # CRITICAL
+  only_warning:
+    "()": modules.log_filters.ExactLevelFilter
+    level: 30  # WARNING
+  only_debug:
+    "()": modules.log_filters.ExactLevelFilter
+    level: 10  # DEBUG
 
 handlers:
+  debug_file_handler:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/debug.log
+    filters: [only_debug]
+
   info_file_handler:
     class: logging.FileHandler
     level: INFO
     formatter: detailed
     filename: logs/info.log
     filters: [only_info]
+
+  warning_file_handler:
+    class: logging.FileHandler
+    level: WARNING
+    formatter: detailed
+    filename: logs/warning.log
+    filters: [only_warning]
 
   error_file_handler:
     class: logging.FileHandler
@@ -47,7 +67,7 @@ handlers:
 loggers:
   app:
     level: DEBUG
-    handlers: [console, info_file_handler, error_file_handler, critical_file_handler]
+    handlers: [console, debug_file_handler, info_file_handler, warning_file_handler, error_file_handler, critical_file_handler]
     propagate: no
 
 root:
