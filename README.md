@@ -21,6 +21,17 @@
 │   │   ├── keyword_extraction.py   # Keyword extraction model
 │   │   ├── ner_model.py            # Named entity recognition (NER)
 │   │
+│   ├── modules/                     # Main processing modules
+│   │   ├── __init__.py
+│   │   ├── preprocess.py            # Text data processing
+│   │   ├── train_models/            # Model training
+│   │   │   ├── base_trainer.py      # Base training class
+│   │   │   ├── email_classification.py # Train email spam model
+│   │   │   ├── sentiment_analysis.py   # Train sentiment analysis model
+│   │   │   ├── keyword_extraction.py   # Train keyword extraction model
+│   │   │   ├── ner_recognition.py       # Train named entity recognition model
+│   │   ├── utils.py                 # Utility functions
+│   │
 │   ├── inference/                  # Model inference
 │   │   ├── __init__.py
 │   │   ├── predict_email.py        # Predict email spam
@@ -110,87 +121,119 @@
 
 
 
+
 /project
-├── app/                         # Ứng dụng web
+├── app/                          # Ứng dụng web
 │   ├── __init__.py
-│   ├── routes.py                # Định nghĩa các tuyến API
-│   ├── templates/               # Giao diện HTML
-│   ├── static/                  # Tài nguyên tĩnh (CSS, JS, hình ảnh)
-│   ├── api.py                   # API giao tiếp với mô hình
-│   ├── config.py                # Cấu hình ứng dụng web
+│   ├── routes.py                 # Định nghĩa API routes
+│   ├── templates/                # Mẫu HTML
+│   ├── static/                   # Tài nguyên tĩnh (CSS, JS, hình ảnh)
+│   ├── api.py                     # API để tương tác với mô hình
+│   ├── config.py                  # Cấu hình ứng dụng web
 │
-├── main.py                      # Chạy toàn bộ hệ thống
-├── requirements.txt             # Danh sách thư viện cần thiết
-├── README.md                    # Tài liệu dự án
-├── project_structure.md         # Cấu trúc của dự án          
-├── logging_guide.md             # Hướng dẫn viết message cho logging
-│
-├── data/                        # Dữ liệu gốc và xử lý
-│   ├── raw/                     # Dữ liệu chưa xử lý
-│   ├── processed/               # Dữ liệu đã xử lý
-│   ├── email_spam.csv           # Bộ dữ liệu email spam
-│   ├── sentiment_analysis.csv   # Bộ dữ liệu phân tích cảm xúc
-│   ├── keyword_extraction.csv   # Bộ dữ liệu trích xuất từ khóa
-│
-├── models/                      # Lưu trữ mô hình
-│   ├── email_spam_classifier.pkl # Mô hình phân loại email spam
-│   ├── sentiment_analyzer.pkl   # Mô hình phân tích cảm xúc
-│   ├── keyword_extractor.pkl    # Mô hình trích xuất từ khóa
-│   ├── ner_model.pkl            # Mô hình nhận diện thực thể
-│
-├── modules/                     # Các module xử lý chính
+├── src/                          # Mã nguồn của dự án
 │   ├── __init__.py
-│   ├── preprocess.py            # Xử lý dữ liệu văn bản
-│   ├── train_models/            # Huấn luyện mô hình
-│   │   ├── base_trainer.py      # Lớp cơ bản để huấn luyện 
-│   │   ├── email_classification.py # Huấn luyện mô hình email spam
-│   │   ├── sentiment_analysis.py   # Huấn luyện mô hình phân tích cảm xúc
-│   │   ├── keyword_extraction.py   # Huấn luyện mô hình trích xuất từ khóa
-│   │   ├── ner_recognition.py       # Huấn luyện mô hình nhận diện thực thể
-│   ├── utils.py                 # Các hàm tiện ích
+│   ├── preprocess/               # Tiền xử lý văn bản
+│   │   ├── __init__.py
+│   │   ├── text_cleaning.py       # Làm sạch và tách từ
+│   │   ├── feature_engineering.py # Trích xuất đặc trưng
+│   │
+│   ├── models/                    # Mô hình Machine Learning
+│   │   ├── __init__.py
+│   │   ├── email_spam.py           # Bộ phân loại spam email
+│   │   ├── sentiment_analysis.py   # Mô hình phân tích cảm xúc
+│   │   ├── keyword_extraction.py   # Mô hình trích xuất từ khóa
+│   │   ├── ner_model.py            # Mô hình nhận diện thực thể có tên (NER)
+│   │
+│   ├── modules/                     # Các module xử lý chính
+│   │   ├── __init__.py
+│   │   ├── preprocess.py            # Xử lý dữ liệu văn bản
+│   │   ├── train_models/            # Huấn luyện mô hình
+│   │   │   ├── base_trainer.py      # Lớp huấn luyện cơ bản
+│   │   │   ├── email_classification.py # Huấn luyện mô hình phân loại email spam
+│   │   │   ├── sentiment_analysis.py   # Huấn luyện mô hình phân tích cảm xúc
+│   │   │   ├── keyword_extraction.py   # Huấn luyện mô hình trích xuất từ khóa
+│   │   │   ├── ner_recognition.py       # Huấn luyện mô hình nhận diện thực thể
+│   │   ├── utils.py                 # Các hàm tiện ích
+│   │
+│   ├── inference/                  # Suy luận mô hình
+│   │   ├── __init__.py
+│   │   ├── predict_email.py        # Dự đoán email spam
+│   │   ├── predict_sentiment.py    # Dự đoán cảm xúc của văn bản
+│   │   ├── extract_keywords.py     # Trích xuất từ khóa từ văn bản
+│   │   ├── recognize_entities.py   # Nhận diện thực thể có tên
+│   │
+│   ├── evaluation/                 # Đánh giá mô hình
+│   │   ├── __init__.py
+│   │   ├── metrics.py              # Độ chính xác, precision, recall, v.v.
+│   │   ├── benchmark.py            # Đánh giá hiệu suất
+│   │   ├── baseline.py             # So sánh với mô hình baseline
+│   │   ├── visualize.py            # Trực quan hóa kết quả
+│   │   ├── results/                # Lưu kết quả đánh giá
+│   │   │   ├── benchmark_results.csv
+│   │   │   ├── baseline_results.csv
+│   │
+│   ├── benchmarking/               # Đánh giá hiệu suất hệ thống
+│   │   ├── __init__.py
+│   │   ├── local_tests/            # Kiểm tra trên máy cá nhân
+│   │   │   ├── test_latency.py      # Kiểm tra độ trễ
+│   │   │   ├── test_resource_usage.py # Kiểm tra sử dụng tài nguyên
+│   │   │   ├── test_throughput.py   # Kiểm tra thông lượng
+│   │   │   ├── README.md
+│   │   ├── server_tests/           # Kiểm tra trên server
+│   │   │   ├── test_latency.py
+│   │   │   ├── test_resource_usage.py
+│   │   │   ├── test_throughput.py
+│   │   │   ├── setup_monitoring.md
+│   │   │   ├── README.md
 │
-├── scripts/                     # Các script thực thi độc lập
-│   ├── evaluate_model.py        # Đánh giá mô hình
-│   ├── train_email_model.py     # Huấn luyện mô hình email spam
-│   ├── train_sentiment_model.py # Huấn luyện mô hình phân tích cảm xúc
-│   ├── train_keyword_model.py   # Huấn luyện mô hình trích xuất từ khóa
-│   ├── train_ner_model.py       # Huấn luyện mô hình nhận diện thực thể
-│   ├── predict_email.py         # Dự đoán email spam
-│   ├── predict_sentiment.py     # Dự đoán cảm xúc văn bản
-│   ├── extract_keywords.py      # Trích xuất từ khóa từ văn bản
-│   ├── recognize_entities.py    # Nhận diện thực thể trong văn bản
+├── scripts/                       # Các script độc lập
+│   ├── train_email_model.py        # Huấn luyện bộ phân loại spam email
+│   ├── train_sentiment_model.py    # Huấn luyện mô hình phân tích cảm xúc
+│   ├── train_keyword_model.py      # Huấn luyện mô hình trích xuất từ khóa
+│   ├── train_ner_model.py          # Huấn luyện mô hình nhận diện thực thể
+│   ├── evaluate_model.py           # Đánh giá mô hình
 │
-├── configs/                     # Cấu hình hệ thống
-│   ├── dev_config.yaml          # Cấu hình môi trường phát triển
-│   ├── test_config.yaml         # Cấu hình kiểm thử
-│   ├── prod_config.yaml         # Cấu hình môi trường sản phẩm
-│   ├── app_config.yaml          # Cấu hình ứng dụng web
-│   ├── model_config.yaml        # Cấu hình các mô hình (hyperparameters, path...)
+├── tests/                         # Kiểm thử tự động
+│   ├── __init__.py
+│   ├── test_preprocess.py         # Kiểm thử chức năng tiền xử lý
+│   ├── test_models.py             # Kiểm thử mô hình
+│   ├── test_inference.py          # Kiểm thử suy luận mô hình
+│   ├── test_api.py                # Kiểm thử API
+│   ├── test_utils.py              # Kiểm thử các hàm tiện ích
 │
-├── logs/                        # Log hệ thống
-│   ├── app.log                  # Log chính của ứng dụng
-│   ├── error.log                # Log lỗi
-│   ├── pipeline.log             # Log pipeline
+├── notebooks/                     # Jupyter notebooks cho thử nghiệm
+│   ├── exploratory_data_analysis.ipynb # Phân tích dữ liệu khám phá
+│   ├── model_training.ipynb        # Huấn luyện mô hình
+│   ├── inference.ipynb             # Suy luận trên mô hình
 │
-├── tests/                       # Kiểm thử hệ thống
-│   ├── test_preprocess.py          # Kiểm thử xử lý dữ liệu văn bản
-│   ├── test_train.py               # Kiểm thử huấn luyện mô hình
-│   ├── test_predict.py             # Kiểm thử dự đoán đầu ra
-│   ├── test_utils.py               # Kiểm thử các hàm tiện ích
-│   ├── test_api.py                 # Kiểm thử API của ứng dụng web
+├── data/                          # Lưu trữ dữ liệu
+│   ├── raw/                       # Dữ liệu gốc chưa xử lý
+│   ├── processed/                  # Dữ liệu đã xử lý
+│   ├── email_spam.csv              # Tập dữ liệu email spam
+│   ├── sentiment_analysis.csv      # Tập dữ liệu phân tích cảm xúc
+│   ├── keyword_extraction.csv      # Tập dữ liệu trích xuất từ khóa
 │
-├── notebooks/                   # Notebook Jupyter để thử nghiệm và phân tích dữ liệu
-│   ├── exploratory_data_analysis.ipynb  # Khám phá dữ liệu
-│   ├── model_training.ipynb             # Notebook huấn luyện mô hình
-│   ├── inference.ipynb                   # Notebook chạy thử mô hình
+├── configs/                       # Cấu hình dự án
+│   ├── dev_config.yaml            # Cấu hình môi trường phát triển
+│   ├── test_config.yaml           # Cấu hình môi trường kiểm thử
+│   ├── prod_config.yaml           # Cấu hình môi trường sản xuất
+│   ├── app_config.yaml            # Cấu hình ứng dụng web
+│   ├── model_config.yaml          # Cấu hình tham số mô hình
 │
-├── docker/                      # Cấu hình Docker
-│   ├── Dockerfile               # Dockerfile container hóa dự án
-│   ├── docker-compose.yml       # Cấu hình dịch vụ Docker
+├── logs/                          # Nhật ký hệ thống
+│   ├── app.log
+│   ├── error.log
+│   ├── pipeline.log
 │
-├── .gitignore                   # Bỏ qua các file không cần thiết
-└── setup.py                     # Đóng gói dự án thành thư viện (nếu cần)
-
-
-
-
+├── docker/                        # Cấu hình Docker
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│
+├── main.py                        # Điểm vào chính của dự án
+├── requirements.txt               # Danh sách thư viện cần thiết
+├── README.md                      # Tài liệu hướng dẫn dự án
+├── project_structure.md           # Giải thích cấu trúc dự án
+├── logging_guide.md               # Hướng dẫn ghi log
+├── .gitignore                      # Loại bỏ các file không cần thiết khi commit
+└── setup.py                        # Script cài đặt dự án

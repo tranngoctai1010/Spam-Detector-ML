@@ -1,131 +1,93 @@
-import yaml
-import logging
-from base_trainer import BaseTrainer
+# Build-in imports
+import traceback
+
+# Third-party imports
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVR
-from sklearn.metrics import r2_score, mean_squared_error, ConfusionMatrixDisplay
+from sklearn.metrics import r2_score, mean_squared_error
 import matplotlib.pyplot as plt
 
-#Config logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename="logs/dev.log",
-    filemode='w',
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+# Internal imports
+from src.modules.training_modules.base_trainer import BaseTrainer
+from src.modules.utils.logger_manager import LoggerManager
+from src.modules.utils.config_loader import ConfigLoader
 
-#Load config YAML file
-config_path="configs/modules_config.yaml"
+
+# Get logger
+logger = LoggerManager.get_logger()
+
+# Get configuration
+full_config = ConfigLoader.get_config(file_name="modules_config.yaml")
 try:
-    with open(config_path, "r") as file:
-        full_config = yaml.safe_load(file)
-        config = full_config["training_modules/"]["regression.py"] 
-except FileNotFoundError:
-    logging.error("Config not found at %s. Please check file path.", config_path)
-    raise
-except KeyError as e:
-    logging.error("Missing key in configuration file:\n %s", e)
-    raise
-except yaml.YAMLError as e:
-    logging.error("Error parsing YAML file:\n %s", e)
-    raise 
+    config = full_config["training_modules"]["regression.py"]
 except Exception as e:
-    logging.error("Error:\n %s", e)
-    raise
+    logger.error("[regression.py] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
 
 
 class TrainRegression(BaseTrainer):
     """
-    TrainClassification extend BaseTrainer for classification tasks.
+    [TrainClassification] - Extend BaseTrainer for classification tasks.
 
     Arguments:
-        x_train, x_test, y_train, y_test: 
-            Training and testing datasets.
+        x_train, x_test, y_train, y_test (np.ndarray): Training and testing datasets.
 
     Atributes:
-        scoring: 
-            Metric is used to evaluate model.
-
-        param_grids: 
-            A dictionary of hyperparameters for the optimization search process.
-
-        random_state:
-            Used to control the randomness of the algorithm.
-
-        models: 
-            Store algorithms.
+        models (dict[str, object]): Store algorihms.
 
     Methods:
-        train(): 
-            Train all sefecified models and select the best one.
-
-            Arguments: 
-                use_random_search (bool): If True, uses RandomizedSearchCV instead of GridSearchCV.
-
-        predict(): 
-            Uses the best model to predict test set (method of BaseTrainer).
-            
-        evaluate():  
-            Evaluates classification model and return classification report.
-
-        plot_confusion_matrix(): 
-            Displays the confusion matrix.
+        train(use_random_search): Train all sefecified models and select the best one.
+        evaluate(): Evaluates classification model and return classification report.
     """
     def __init__(self, x_train, x_test, y_train, y_test):
-        
-        self.scoring = config["scoring"]
-        self.param_grids = config["param_grids"]
-        self.random_state = config["random_state"]
+        try:
+            # Config for hyperparameters of algorithm.
+            scoring_ = config["scoring"]
+            param_grids_ = config["param_grids"]
+            random_state_ = config["random_state"]
+        except Exception as e:
+            logger.error("[TrainRegression][__init__] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
+            raise
 
         try:
             self.models = {
-                "RandomForestRegressor": RandomForestRegressor(random_state=self.random_state),
+                "RandomForestRegressor": RandomForestRegressor(random_state=random_state_),
                 "LinearRegression": LinearRegression(),
                 "KNeighborsRegressor": KNeighborsRegressor(),
                 "SVR": SVR()
             }
-        except KeyError as e:
-            logging.error("Missing the key in config:\n %s", e)
-            raise
-        except TypeError as e:
-            logging.error("Invalid file in config:\n %s", e)
-            raise
-        except ValueError as e:
-            logging.error("Invalid parameter value:\n %s", e)
         except Exception as e:
-            logging.error("Error initializing models:\n %s", e)
+            logger.error("[TrainRegression][__init__] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
             raise
 
         # Call the parent class contructor
-        super.__init__(x_train, x_test, y_train, y_test, self.scoring, self.models, self.param_grids)
+        super.__init__(x_train, x_test, y_train, y_test, scoring_, self.models, param_grids_)
 
     def train(self, use_random_seach=False):
+        """
+        [TrainRegression][train] - Train all sefecified models and select the best one.
 
-        logging.info("Training models with scoring: %s", self.scoring)
+        Args:
+            use_random_seach (bool, optional): If True, uses RandomizedSearchCV instead of GridSearchCV. Defaults to False.
+        """
+
+        logger.info("Training models with scoring: %s", self.scoring)
         self.train_model()      #Train all models defined in self.models
 
     def evaluate(self):
-
+        """
+        [TrainRegression][evaluate] - Evaluates classification model and return classification report.
+        """
         try:
             if self.y_predict is None:
                 self.preidct()
 
             report1 = r2_score(self.y_test, self.y_predict)
             report2 = mean_squared_error(self.y_test, self.y_predict)
-            logging.info("R2 score for the best model %s is:\n%s", self.best_model_name, report1)
-            logging.info("Mean squared error for the best model %s is:\n%s", self.best_model_name, report2)
+            logger.info("R2 score for the best model %s is:\n%s", self.best_model_name, report1)
+            logger.info("Mean squared error for the best model %s is:\n%s", self.best_model_name, report2)
         except Exception as e:
-            logging.error("Error during model evaluation in evaluate().")
+            logger.error("[TrainRegression][evaluate] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
 
-    def plot_confusion_matrix(self):
-
-        try:
-            display = ConfusionMatrixDisplay.from_estimator(self.best_estimator, self.x_test, self.y_test)
-            plt.title("Confusion matrix - The best model")
-            plt.show()
-        except Exception as e:
-            logging.error("Error displaying confusion matrix in plot_confusion_matrix():\n %s", e)
-            raise
 

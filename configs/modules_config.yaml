@@ -1,19 +1,19 @@
 #Configuration of the training_modules forder
-training_modules/:
+training_modules:
 
   #Configuration of the base_trainer.py file
   base_trainer.py:
-    searchCV:
-      n_jobs: -1
-      cv: 5
-      verbose: 3
-      n_iter: 10
+    n_jobs: -1
+    cv: 5
+    verbose: 3
+    n_iter: 10   # For RandomizerSearchCV
 
   #Configuration of the classification.py file
   classification.py:
 
     scoring: "accuracy"
     random_state: 42
+    max_iter: 1000
 
     param_grids:
       LogisticRegression: 
@@ -42,6 +42,7 @@ training_modules/:
 
     scoring: "acuracy"
     random_state: 42
+    max_iter: 1000
 
     param_grids:
       RandomForest:
