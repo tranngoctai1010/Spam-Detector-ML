@@ -85,7 +85,7 @@ if __name__ == "__main__":
 import argparse
 from flask import Flask
 from app.routes import create_app
-from scripts.train_email_model import train_email_classifier
+from scripts.train_emails_model import train_email_classifier
 from scripts.train_sms_model import train_sms_classifier
 
 def main():

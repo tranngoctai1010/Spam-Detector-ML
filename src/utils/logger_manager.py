@@ -32,7 +32,7 @@ class LoggerManager:
            return
 
         file_name = "logging_config.yaml"
-        logging_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "configs", file_name)
+        logging_path = os.path.join(os.path.dirname(__file__), "..", "..", "configs", file_name)
         
         if not os.path.exists(logging_path):
             raise FileNotFoundError(f"[LoggerManager][setup_logging] - The {file_name} file was not found.")

@@ -6,7 +6,7 @@ import traceback
 import yaml
 
 #Internal imports
-from src.modules.utils.logger_manager import LoggerManager
+from src.utils.logger_manager import LoggerManager
 
 
 # Get logger
@@ -33,7 +33,7 @@ class ConfigLoader:
         Raises:
             FileNotFoundError: If the configuration file not found.
         """
-        config_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "configs" ,file_name)
+        config_path = os.path.join(os.path.dirname(__file__), "..", "..", "configs" ,file_name)
         if not os.path.exists(config_path):
             raise FileNotFoundError("[ConfigLoader][load] - Configuration file not found.")
 

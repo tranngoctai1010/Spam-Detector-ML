@@ -4,19 +4,19 @@ import traceback
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
 # Internal imports
-from src.modules.utils.logger_manager import LoggerManager
-from src.modules.utils.config_loader import ConfigLoader
+from src.utils.logger_manager import LoggerManager
+from src.utils.config_loader import ConfigLoader
 
 
 # Create logger
 logger = LoggerManager.get_logger()
 
 # Get configuration 
-full_config = ConfigLoader.get_config(file_name="modules_config.yaml")
+full_config = ConfigLoader.get_config(file_name="training_model_config.yaml")
 try:
-    config = full_config["training_models"]["base_trainer.py"]
-except KeyError as e:
-    logger.error(f"[base_trainer.py] - Missing key in config: {e}")
+    config = full_config["base_trainer.py"]
+except Exception as e:
+    logger.error(f"[base_trainer.py] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
     raise
 
 

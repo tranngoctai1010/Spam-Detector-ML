@@ -6,7 +6,7 @@ import traceback
 import joblib
 
 #Internal imports
-from src.modules.utils.logger_manager import LoggerManager
+from src.utils.logger_manager import LoggerManager
 
 
 # Get logger
@@ -18,23 +18,25 @@ class ModelHandler:
     [ModelHandler] - Utility class for saving and loading models and related objects using joblib.
     
     Methods:
-        save_object(obj, file_path): Save an object to a file using joblib.
-        load_object(file_path): Load an object from a file using joblib.
+        save_object(obj, file_name): Save an object to a file using joblib.
+        load_object(file_name): Load an object from a file using joblib.
     """
     
     @staticmethod
-    def save_object(obj, file_path):
+    def save_object(obj, folder_name, file_name):
         """
         [ModelHandler][save_object] - Save an object to a file using joblib.
         
         Args:
             obj (object): The object to save.
-            file_path (str): The file path where the object should be saved.
+            folder_name (str): The name of the model folder.
+            file_name (str): The name of the model file.
         """
         try:
             if obj is None:
                 raise ValueError("[ModelHandler][save_object]- Cannot save None object.")
             
+            file_path = os.path.join(os.path.dirname(__file__), "..", "models", folder_name, file_name)
             joblib.dump(obj, file_path)
             logger.info(f"[ModelHandler][save_object] - Object saved successfully at {file_path}")
         except Exception as e:
@@ -42,12 +44,13 @@ class ModelHandler:
             raise
 
     @staticmethod
-    def load_object(file_path):
+    def load_object(folder_name, file_name):
         """
         [ModelHandler][load_object] - Load an object from a file using joblib.
         
         Args:
-            file_path (str): The file path from where the object should be loaded.
+            folder_name (str): The name of the model folder.
+            file_name (str): The name of the model file.
         
         Returns:
             object: The loaded object.
@@ -59,6 +62,7 @@ class ModelHandler:
             if not os.path.exists(file_path):
                 raise FileNotFoundError(f"[ModelHandler][load_object] - File not found: {file_path}")
             
+            file_path = os.path.join(os.path.dirname(__file__), "..", "models", folder_name, file_name)
             obj = joblib.load(file_path)  
             logger.info(f"[ModelHandler][load_object] - Object loaded successfully from {file_path}")
             return obj

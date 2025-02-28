@@ -1,0 +1,8 @@
+#Configuration of the process_emails.py file
+process_emails.py:
+  TfidfVectorizer:
+    stop_words: "english"
+    ngram_range: [1,2]
+    max_features: 10000
+  SelectPercentile:
+    percentile: 30

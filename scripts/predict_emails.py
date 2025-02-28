@@ -1,37 +1,19 @@
-# Built-in Python libraries
-import logging
+# Build-in imports
 import re
 
-#Third-party libraries
-import yaml
-from modules.utils import ModelHandler
-
-
-#Config logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    filename="logs/scripts.log",
-    filemode='w',
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-
-#Load configuration file
-try:
-    file_path = "configs/scripts_config.yaml"
-    with open(file_path, "r") as file:
-        full_config = yaml.safe_load(file)
-        config = full_config["predict_emails.py"]
-except Exception as e:
-    logging.error("Error when reading scripts_config.yaml file in predict_emails.py file")
-    raise
+# Internal imports 
+from src.utils.model_handler import ModelHandler
 
 # Handle input email
-def handle_email_input(text):
+def handle_email_input(text) -> str:
     text = text.lower()
     text = re.sub(r"\W+", "", text)
     return text
 
-def 
+def predict_email():
+    
+    
+    
 
 
 

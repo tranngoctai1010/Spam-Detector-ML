@@ -11,18 +11,18 @@ from sklearn.naive_bayes import MultinomialNB
 import matplotlib.pyplot as plt
 
 # Internal imports
-from src.modules.training_modules.base_trainer import BaseTrainer
-from src.modules.utils.logger_manager import LoggerManager
-from src.modules.utils.config_loader import ConfigLoader
+from src.training_model.base_trainer import BaseTrainer
+from src.utils.logger_manager import LoggerManager
+from src.utils.config_loader import ConfigLoader
 
 
 # Get logger
 logger = LoggerManager.get_logger()
 
 # Get configuration
-full_config = ConfigLoader.get_config(file_name="modules_config.yaml")
+full_config = ConfigLoader.get_config(file_name="training_model_config.yaml")
 try:
-    config = full_config["training_modules"]["classification.py"]
+    config = full_config["classification.py"]
 except Exception as e:
     logger.error(f"[classification.py] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
     raise

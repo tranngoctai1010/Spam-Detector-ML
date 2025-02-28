@@ -7,21 +7,21 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVR
 from sklearn.metrics import r2_score, mean_squared_error
-import matplotlib.pyplot as plt
+
 
 # Internal imports
-from src.modules.training_modules.base_trainer import BaseTrainer
-from src.modules.utils.logger_manager import LoggerManager
-from src.modules.utils.config_loader import ConfigLoader
+from src.training_model.base_trainer import BaseTrainer
+from src.utils.logger_manager import LoggerManager
+from src.utils.config_loader import ConfigLoader
 
 
 # Get logger
 logger = LoggerManager.get_logger()
 
 # Get configuration
-full_config = ConfigLoader.get_config(file_name="modules_config.yaml")
+full_config = ConfigLoader.get_config(file_name="training_model_config.yaml")
 try:
-    config = full_config["training_modules"]["regression.py"]
+    config = full_config["regression.py"]
 except Exception as e:
     logger.error("[regression.py] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
 
@@ -72,7 +72,7 @@ class TrainRegression(BaseTrainer):
             use_random_seach (bool, optional): If True, uses RandomizedSearchCV instead of GridSearchCV. Defaults to False.
         """
 
-        logger.info("Training models with scoring: %s", self.scoring)
+        logger.info("[TrainRegression][train] - Training models with scoring: %s", self.scoring)
         self.train_model()      #Train all models defined in self.models
 
     def evaluate(self):
@@ -85,8 +85,8 @@ class TrainRegression(BaseTrainer):
 
             report1 = r2_score(self.y_test, self.y_predict)
             report2 = mean_squared_error(self.y_test, self.y_predict)
-            logger.info("R2 score for the best model %s is:\n%s", self.best_model_name, report1)
-            logger.info("Mean squared error for the best model %s is:\n%s", self.best_model_name, report2)
+            logger.info("[TrainRegression][evaluate] - R2 score for the best model %s is:\n%s", self.best_model_name, report1)
+            logger.info("[TrainRegression][evaluate] - Mean squared error for the best model %s is:\n%s", self.best_model_name, report2)
         except Exception as e:
             logger.error("[TrainRegression][evaluate] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
 

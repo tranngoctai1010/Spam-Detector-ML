@@ -1,8 +1,5 @@
-# Configuration of the train_emails_model.py file
-train_emails_model.py:
-  save_model:
-  save_gridsearch:
-
-# Configuration of the predict_emails.py file
-predict_emails.py:
-  load_model:
+train_model.py:
+  process_function: ["process_emails"]
+  predictive_modeling: ["TrainClassification", "TrainRegression"]
+  folder_name: ["email_model"]
+  name: ["email"]             
