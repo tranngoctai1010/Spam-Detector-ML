@@ -11,7 +11,7 @@ def handle_email_input(text) -> str:
     return text
 
 def predict_email():
-    
+    pass
     
     
 
