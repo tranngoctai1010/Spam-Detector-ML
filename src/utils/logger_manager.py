@@ -36,8 +36,9 @@ class LoggerManager:
 
         file_name = "logging_config.yaml"
         logging_path = os.path.join(os.path.dirname(__file__), "..", "..", "configs", file_name)
+        # logging_path = os.path.realpath(logging_path)
         
-        if not os.path.exists(logging_path):
+        if not os.path.exists(logging_path) == True:
             raise FileNotFoundError(f"[LoggerManager][setup_logging] - The {file_name} file was not found.")
         
         try:
@@ -55,7 +56,7 @@ class LoggerManager:
         cls._is_setup = True
     
     @classmethod
-    def get_logger(cls, name=None, log_file=None) -> logging.getLogger:
+    def get_logger(cls, name=None, log_file="src.log") -> logging.getLogger:
         """
         [LoggerManager][get_logger] - Get a logger instance with the specified name.
 
@@ -69,4 +70,8 @@ class LoggerManager:
         if not cls._is_setup:
             cls.setup_logging(log_file)
         return logging.getLogger(name or __name__)
-        
+         
+
+if __name__ == "__main__":
+    LoggerManager.get_logger()
+    print(LoggerManager._is_setup)

@@ -35,6 +35,7 @@ class ConfigLoader:
         """
         config_path = os.path.join(os.path.dirname(__file__), "..", "..", "configs" ,file_name)
         if not os.path.exists(config_path):
+            logger.error("[ConfigLoader][load] - Configuration file not found.\n%s", traceback.format_exc())
             raise FileNotFoundError("[ConfigLoader][load] - Configuration file not found.")
 
         try:

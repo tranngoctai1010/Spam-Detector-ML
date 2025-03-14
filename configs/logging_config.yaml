@@ -1,102 +1,17 @@
-# version: 1
-# disable_existing_loggers: False
-
-# formatters:
-#   detailed:
-#     format: "[%(asctime)s] [%(levelname)s] %(name)s (%(filename)s:%(lineno)d) - %(message)s"
-
-# filters:
-#   only_info:
-#     "()": modules.log_filters.ExactLevelFilter
-#     level: 20  # INFO
-#   only_error:
-#     "()": modules.log_filters.ExactLevelFilter
-#     level: 40  # ERROR
-#   only_critical:
-#     "()": modules.log_filters.ExactLevelFilter
-#     level: 50  # CRITICAL
-#   only_warning:
-#     "()": modules.log_filters.ExactLevelFilter
-#     level: 30  # WARNING
-#   only_debug:
-#     "()": modules.log_filters.ExactLevelFilter
-#     level: 10  # DEBUG
-
-# handlers:
-#   debug_file_handler:
-#     class: logging.FileHandler
-#     level: DEBUG
-#     formatter: detailed
-#     filename: logs/debug.log
-#     filters: [only_debug]
-
-#   info_file_handler:
-#     class: logging.FileHandler
-#     level: INFO
-#     formatter: detailed
-#     filename: logs/info.log
-#     filters: [only_info]
-
-#   warning_file_handler:
-#     class: logging.FileHandler
-#     level: WARNING
-#     formatter: detailed
-#     filename: logs/warning.log
-#     filters: [only_warning]
-
-#   error_file_handler:
-#     class: logging.FileHandler
-#     level: ERROR
-#     formatter: detailed
-#     filename: logs/error.log
-#     filters: [only_error]
-
-#   critical_file_handler:
-#     class: logging.FileHandler
-#     level: CRITICAL
-#     formatter: detailed
-#     filename: logs/critical.log
-#     filters: [only_critical]
-
-#   console:
-#     class: logging.StreamHandler
-#     level: DEBUG
-#     formatter: detailed
-#     stream: ext://sys.stdout
-
-# loggers:
-#   app:
-#     level: DEBUG
-#     handlers: [console, debug_file_handler, info_file_handler, warning_file_handler, error_file_handler, critical_file_handler]
-#     propagate: no
-
-# root:
-#   level: DEBUG
-#   handlers: [console]
-
-
-
-
-
-
-
-
-
-
-
 version: 1
 disable_existing_loggers: False
 
 formatters:
   detailed:
     format: "[%(asctime)s] [%(levelname)s] %(name)s (%(filename)s:%(lineno)d) - %(message)s"
-
+ 
 handlers:
   file_handler:
     class: logging.FileHandler
     level: DEBUG
     formatter: detailed
     filename: logs/app.log
+    mode: "w"
   
   console:
     class: logging.StreamHandler

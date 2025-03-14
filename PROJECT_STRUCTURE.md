@@ -30,9 +30,20 @@
 |   ├── evaluating_model/
 |   |   ├── 
 |   ├── utils/
+|   |   ├── config_loader.py
+|   |   ├── logger_manager.py
+|   |   ├── model_handler.py
 |   
-├── test/
+├── tests/
 |   ├── unit/
 |   |   ├── test_src/
 |   |   |   ├── test_utils
 |   |   |   |   ├── test_logger_manager.py
+|   |   |   |   ├── test_model_handler.py
+
+
+
+
+
+2️⃣ Học MLOps (Docker, FastAPI, CI/CD) → Đưa mô hình AI vào thực tế.
+3️⃣ Tối ưu code, tránh lỗi nhỏ (refactor preidct() thành predict(), tối ưu BaseTrainer).
