@@ -27,7 +27,7 @@ except Exception as e:
     logger.error(f"[classification.py] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
     raise
 
-
+l
 class TrainClassification(BaseTrainer):
     """
     [TrainClassification] - Extend BaseTrainer for classification tasks.
@@ -39,7 +39,7 @@ class TrainClassification(BaseTrainer):
         models (dict[str, object]): Store algorihms.
 
     Methods:
-        train(use_random_search): Train all sefecified models and select the best one.
+        train(use_random_search): Train al sefecified models and select the best one.
         evaluate(): Evaluates classification model and return classification report.
         plot_confusion_matrix(): Displays the confusion matrix.
     """
@@ -117,4 +117,39 @@ if __name__ == "__main__":
     train_classification.train()
     train_classification.evaluate()
     # train_classification.plot_confusion_matrix()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Build-in imports
+import traceback
+
+#Third-party imports
+from beartype import beartype
+from sklearn.metrics import classification_report, ConfusionMatrixDisplay
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import LinearSVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB
+import matplotlib.pyplot as plt
+
+from src.training_model.base_trainer import BaseTrainer
+
 

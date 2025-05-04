@@ -6,3 +6,7 @@ pyyaml
 matplotlib
 pytest 
 pytest-mock
+tqdm
+beartype
+rich
+pydantic

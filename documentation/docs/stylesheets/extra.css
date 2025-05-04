@@ -1,0 +1,261 @@
+/* Tùy chỉnh cho Dark mode */
+[data-md-color-scheme="slate"] {
+    /* Tiêu đề chính (h1) - "Model" */
+    --md-typeset-a-color: #26a69a; /* Màu liên kết (teal) */
+    --md-primary-fg-color: #26a69a; /* Màu chính (teal) */
+    --md-accent-fg-color: #ffb300; /* Màu nhấn (amber) */
+}
+
+[data-md-color-scheme="slate"] h1 {
+    color: #26a69a !important; /* Màu teal cho tiêu đề "Model" */
+}
+
+/* Tiêu đề phụ (h2) - "Person" */
+[data-md-color-scheme="slate"] h2 {
+    color: #39ff14 !important; /* Xanh neon, đồng bộ với tên hàm/class */
+}
+
+/* Tiêu đề cấp 3 (h3) - "Attributes", "Parameters" */
+[data-md-color-scheme="slate"] h3 {
+    color: #ffca28 !important; /* Màu vàng nhạt */
+}
+
+/* Đoạn văn bản (p) - Mô tả */
+[data-md-color-scheme="slate"] .md-typeset p {
+    color: #e0e0e0 !important; /* Màu trắng xám nhạt, dễ đọc */
+}
+
+/* Tiêu đề cột trong bảng (th) - "Name", "Type", "Description", "Default" */
+[data-md-color-scheme="slate"] .md-typeset table th {
+    color: #26a69a !important; /* Màu teal */
+    background-color: #2d2d2d !important; /* Nền tối hơn */
+}
+
+/* Nội dung trong bảng (td) - "name", "str", "Tên của người", "required" */
+[data-md-color-scheme="slate"] .md-typeset table td {
+    color: #e0e0e0 !important; /* Màu trắng xám nhạt */
+}
+
+/* Tùy chỉnh cho Light mode */
+[data-md-color-scheme="default"] {
+    /* Tiêu đề chính (h1) - "Model" */
+    --md-typeset-a-color: #3f51b5; /* Màu liên kết (indigo) */
+    --md-primary-fg-color: #3f51b5; /* Màu chính (indigo) */
+    --md-accent-fg-color: #f06292; /* Màu nhấn (pink) */
+}
+
+[data-md-color-scheme="default"] h1 {
+    color: #3f51b5 !important; /* Màu indigo cho tiêu đề "Model" */
+}
+
+/* Tiêu đề phụ (h2) - "Person" */
+[data-md-color-scheme="default"] h2 {
+    color: #b00020 !important; /* Đỏ đậm, đồng bộ với tên hàm/class */
+}
+
+/* Tiêu đề cấp 3 (h3) - "Attributes", "Parameters" */
+[data-md-color-scheme="default"] h3 {
+    color: #d81b60 !important; /* Màu đỏ hồng */
+}
+
+/* Đoạn văn bản (p) - Mô tả */
+[data-md-color-scheme="default"] .md-typeset p {
+    color: #333333 !important; /* Màu đen xám, dễ đọc */
+}
+
+/* Tiêu đề cột trong bảng (th) - "Name", "Type", "Description", "Default" */
+[data-md-color-scheme="default"] .md-typeset table th {
+    color: #3f51b5 !important; /* Màu indigo */
+    background-color: #e0e0e0 !important; /* Nền xám nhạt */
+}
+
+/* Nội dung trong bảng (td) - "name", "str", "Tên của người", "required" */
+[data-md-color-scheme="default"] .md-typeset table td {
+    color: #333333 !important; /* Màu đen xám */
+}
+
+/* Tạo kiểu cho các đoạn mã trong docstring */
+code {
+    background-color: #f0f0f0;
+    color: #d6336c;
+    font-family: Consolas, monospace;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+pre code {
+    background-color: #282c34;
+    color: #61dafb;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    overflow: auto;
+}
+
+hr {
+    border: 2px solid #444;  /* Tăng độ dày và màu của đường phân cách */
+    margin: 30px 0;  /* Tạo khoảng cách lớn hơn */
+}
+
+
+
+/* Cấu hình cho inline code */
+.md-typeset code {
+    font-size: 0.9em; /* Điều chỉnh cỡ chữ của inline code, giảm một chút để dễ nhìn hơn */
+    padding: 0.2em 0.4em; /* Thêm khoảng cách xung quanh văn bản trong inline code, giúp dễ đọc */
+    border-radius: 4px; /* Bo tròn các góc của inline code, tạo cảm giác mềm mại */
+    border: 1px solid #ccc; /* Thêm viền 1px màu xám nhạt cho inline code để làm nổi bật */
+}
+
+/* Điều chỉnh cho các thẻ con bên trong inline code, nếu có */
+.md-typeset code * {
+    font-size: 0.75em; /* Điều chỉnh cỡ chữ của tất cả các phần tử con bên trong inline code trở lại mặc định (1em) */
+}
+
+/* Cấu hình cho các đoạn văn bản trong markdown */
+.md-typeset p {
+    font-size: 0.85em; /* Điều chỉnh cỡ chữ của đoạn văn bản, làm cho nó nhỏ hơn một chút để dễ đọc và không chiếm quá nhiều không gian */
+}
+
+/* Cấu hình cho các mục trong danh sách không có thứ tự */
+.md-typeset ul li {
+    font-size: 0.85em; /* Điều chỉnh cỡ chữ của các mục trong danh sách, làm cho nó nhỏ hơn để dễ nhìn */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Tùy chỉnh tiêu đề Parameters để có viền trắng đậm */
+.md-typeset .admonition.parameters .admonition-title {
+    font-weight: bold; /* Làm đậm tiêu đề */
+    color: #ffffff; /* Màu chữ trắng */
+    background-color: transparent; /* Không có nền màu */
+    border-top: 3px solid #ffffff; /* Viền trên trắng, dày */
+    border-bottom: 3px solid #ffffff; /* Viền dưới trắng, dày */
+    border-left: none; /* Xóa viền trái */
+    border-right: none; /* Xóa viền phải */
+    padding: 0.2em 0; /* Khoảng cách bên trong */
+    margin-bottom: 0.5em; /* Khoảng cách với danh sách tham số */
+}
+
+/* Tùy chỉnh phần Parameters để không có viền bọc toàn bộ */
+.md-typeset .admonition.parameters {
+    border: none; /* Xóa viền bọc toàn bộ */
+    background-color: transparent; /* Nền trong suốt */
+    padding: 0; /* Xóa padding mặc định */
+    margin: 1em 0; /* Khoảng cách bên ngoài */
+}
+
+/* Tùy chỉnh danh sách tham số */
+.md-typeset .admonition.parameters .md-typeset__table {
+    background-color: transparent; /* Xóa nền bảng */
+    border: none; /* Xóa viền bảng mặc định */
+}
+
+.md-typeset .admonition.parameters .md-typeset__table th,
+.md-typeset .admonition.parameters .md-typeset__table td {
+    border: none; /* Xóa viền của các ô trong bảng */
+    padding: 0.5em 1em; /* Khoảng cách bên trong */
+    font-family: monospace; /* Font chữ giống code */
+    color: #ffffff; /* Màu chữ trắng */
+}
+
+/* Tô màu cho kiểu dữ liệu (như int, str) và giá trị mặc định */
+.md-typeset .admonition.parameters .md-typeset__table code {
+    color: #88b8f6; /* Màu xanh lam nhạt giống sklearn */
+    background-color: transparent; /* Xóa nền của code */
+    font-weight: normal; /* Không làm đậm */
+}
+
+
+
+
+
+
+
+
+
+
+/* Xóa viền và nền của chữ ký */
+.md-typeset .doc-class .doc-heading code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.1em;
+    color: inherit;
+    font-family: inherit;
+}
+
+/* Tùy chỉnh thanh điều hướng */
+.md-breadcrumb {
+    font-size: 0.9em;
+    color: #b3b3b3;
+}
+
+.md-breadcrumb a {
+    color: #00c4b4;
+    text-decoration: none;
+}
+
+.md-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+
+
+.md-typeset .admonition.parameters {
+    font-family: monospace;
+}
+.md-typeset .admonition.parameters p {
+    margin-left: 1em;
+}
+
+
+
+
+
+/* Đảm bảo Parameters hiển thị dưới dạng danh sách */
+.md-typeset .admonition.parameters {
+    font-family: monospace;
+}
+
+/* Tùy chỉnh thụt lề và xuống dòng */
+.md-typeset .admonition.parameters p {
+    margin: 0.5em 0;
+    margin-left: 1em;
+}
+
+/* Xóa viền và nền của chữ ký */
+.md-typeset .doc-class .doc-heading code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.1em;
+    color: inherit;
+    font-family: inherit;
+}
+
+/* Tùy chỉnh thanh điều hướng */
+.md-breadcrumb {
+    font-size: 0.9em;
+    color: #b3b3b3;
+}
+
+.md-breadcrumb a {
+    color: #00c4b4;
+    text-decoration: none;
+}
+
+.md-breadcrumb a:hover {
+    text-decoration: underline;
+}

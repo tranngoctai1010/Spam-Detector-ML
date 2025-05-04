@@ -1,0 +1,9 @@
+2025-04-05 15:39:56 - ERROR - [int.add_numbers] - Error TypeError:
+Traceback (most recent call last):
+  File "c:\Users\tranngoctai\Documents\Spam-Detector-ML\Spam-Detector-ML\src\utils\exception_handler.py", line 279, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\tranngoctai\Documents\Spam-Detector-ML\Spam-Detector-ML\dfsfsd.py", line 9, in add_numbers
+    return a+b
+           ~^~
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+

@@ -28,7 +28,7 @@ def main():
         run_pipeline()
     elif args.task == "predict":
         if not args.input:
-            print("Error: Please provide input text using --input for prediction.")
+            print("Error: Please provide input text using --input for prediction.") 
             exit(1)
         print(f"🔮 Making predictions for: {args.input}")
         result = predict(args.input)

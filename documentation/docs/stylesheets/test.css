@@ -1,0 +1,134 @@
+/* Tùy chỉnh cho Dark mode */
+[data-md-color-scheme="slate"] {
+    --md-typeset-a-color: #26a69a; /* Màu liên kết (teal) */
+    --md-primary-fg-color: #26a69a; /* Màu chính (teal) */
+    --md-accent-fg-color: #ffb300; /* Màu nhấn (amber) */
+}
+
+[data-md-color-scheme="slate"] h1 {
+    color: #26a69a !important; /* Màu teal cho tiêu đề "Model" */
+}
+
+[data-md-color-scheme="slate"] h2 {
+    color: #39ff14 !important; /* Xanh neon cho tiêu đề phụ */
+}
+
+[data-md-color-scheme="slate"] h3 {
+    color: #ffca28 !important; /* Màu vàng nhạt cho tiêu đề cấp 3 */
+}
+
+[data-md-color-scheme="slate"] .md-typeset p {
+    color: #e0e0e0 !important; /* Màu trắng xám nhạt */
+}
+
+/* Tùy chỉnh cho Light mode */
+[data-md-color-scheme="default"] {
+    --md-typeset-a-color: #3f51b5; /* Màu liên kết (indigo) */
+    --md-primary-fg-color: #3f51b5; /* Màu chính (indigo) */
+    --md-accent-fg-color: #f06292; /* Màu nhấn (pink) */
+}
+
+[data-md-color-scheme="default"] h1 {
+    color: #3f51b5 !important; /* Màu indigo cho tiêu đề "Model" */
+}
+
+[data-md-color-scheme="default"] h2 {
+    color: #b00020 !important; /* Đỏ đậm cho tiêu đề phụ */
+}
+
+[data-md-color-scheme="default"] h3 {
+    color: #d81b60 !important; /* Màu đỏ hồng */
+}
+
+[data-md-color-scheme="default"] .md-typeset p {
+    color: #333333 !important; /* Màu đen xám */
+}
+
+/* Cấu hình cho inline code */
+.md-typeset code {
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #d6336c;
+    background-color: #f0f0f0;
+}
+
+.md-typeset code * {
+    font-size: 1em;
+}
+
+/* Cấu hình cho code block */
+pre code {
+    background-color: #282c34;
+    color: #61dafb;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    overflow: auto;
+}
+
+/* Cấu hình cho đoạn văn bản */
+.md-typeset p {
+    font-size: 0.85em;
+}
+
+/* Cấu hình cho danh sách không có thứ tự */
+.md-typeset ul li {
+    font-size: 0.85em;
+}
+
+/* Tùy chỉnh đường phân cách */
+hr {
+    border: 2px solid #444;
+    margin: 30px 0;
+}
+
+/* Tùy chỉnh phần Parameters */
+.md-typeset .admonition.parameters {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 1em 0;
+    font-family: monospace;
+}
+
+.md-typeset .admonition.parameters .admonition-content {
+    margin: 0;
+}
+
+.md-typeset .admonition.parameters p {
+    margin: 0.5em 0;
+    margin-left: 1.5em;
+}
+
+.md-typeset .admonition.parameters code {
+    color: #88b8f6;
+    background-color: transparent;
+    font-weight: normal;
+}
+
+/* Xóa viền và nền của chữ ký */
+.md-typeset .doc-class .doc-heading code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 1.1em;
+    color: inherit;
+    font-family: inherit;
+}
+
+/* Tùy chỉnh thanh điều hướng */
+.md-breadcrumb {
+    font-size: 0.9em;
+    color: #b3b3b3;
+}
+
+.md-breadcrumb a {
+    color: #00c4b4;
+    text-decoration: none;
+}
+
+.md-breadcrumb a:hover {
+    text-decoration: underline;
+}

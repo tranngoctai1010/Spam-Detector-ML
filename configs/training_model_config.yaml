@@ -12,11 +12,11 @@ classification.py:
   random_state: 42
   max_iter: 1000
 
-  param_grids:
-    LogisticRegression: 
+  param_grid:
+    LogisticRegression:
       C: [0.1, 1, 10]
       solver: ["liblinear", "lbfgs"]
-    RandomForestClassifier: 
+    RandomForestClassifier:
       n_estimators: [100, 200, 300, 500]
       max_depth: [5, 10, 15]
       min_samples_split: [2, 5, 10]
@@ -41,23 +41,23 @@ regression.py:
   random_state: 42
   max_iter: 1000
 
-  param_grids:
+  param_grid:
     RandomForest:
-      n_estimators: [100, 200, 300],
-      max_depth: [10, 20, None],
-      min_samples_split: [2, 5, 10],
-      min_samples_leaf: [1, 2, 4],
-      max_features: ["sqrt", "log2", None],
+      n_estimators: [100, 200, 300]
+      max_depth: [10, 20, None]
+      min_samples_split: [2, 5, 10]
+      min_samples_leaf: [1, 2, 4]
+      max_features: ["sqrt", "log2", None]
       bootstrap: [True, False]
-    LinearRegression:  # Linear regression doesn't require optimization
+    LinearRegression: {} # Linear regression doesn't require optimization
     KNN:
-      n_neighbors: [3, 5, 7, 9, 11],
-      weights: ["uniform", "distance"],
-      p: [1, 2],
+      n_neighbors: [3, 5, 7, 9, 11]
+      weights: ["uniform", "distance"]
+      p: [1, 2]
       algorithm: ["auto", "ball_tree", "kd_tree", "brute"]
     LinearSVR:
-      kernel: ["linear", "poly", "rbf"],
-      C: [0.1, 1, 10, 100],
-      epsilon: [0.01, 0.1, 0.2],
+      kernel: ["linear", "poly", "rbf"]
+      C: [0.1, 1, 10, 100]
+      epsilon: [0.01, 0.1, 0.2]
       gamma: ["scale", "auto"]
 

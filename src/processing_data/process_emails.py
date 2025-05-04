@@ -63,7 +63,7 @@ def process_emails():
         raise
 
 
-    #Step3: Build a pipeline
+    #Step3: Build a pipeline 
     try:
         # Config for hyperparameters of data preprocessing
         stop_words_ = config["stop_words"]
@@ -76,12 +76,12 @@ def process_emails():
             ("select_feature", SelectPercentile(chi2, percentile=percentile_)),
         ])
 
-        pipeline.fit_transform(x_train, y_train)
-        pipeline.transform(x_test)
+        x_train_processed = pipeline.fit_transform(x_train, y_train)
+        x_test_processed = pipeline.transform(x_test)
         ModelHandler.save_object(pipeline, folder_name="email_model", file_name="emails_processing_pipeline.pkl")
         
     except Exception as e:
         logger.error("[process_emails] - Error %s: %s\n%s", type(e).__name__, e, traceback.format_exc())
         raise
         
-    return x_train, x_test, y_train, y_test
+    return x_train_processed, x_test_processed, y_train, y_test
