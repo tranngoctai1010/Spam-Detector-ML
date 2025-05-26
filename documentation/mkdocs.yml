@@ -38,9 +38,9 @@ plugins:
           options:
             docstring_style: google
             members_order: source
-            show_source: false
+            show_source: true
             heading_level: 2
-            group_by_category: true
+            group_by_category: false  # Tắt nhóm thành bảng
             show_root_heading: true
             show_root_full_path: false
             show_signature: true
@@ -49,8 +49,10 @@ plugins:
             show_root_toc_entry: false
             show_bases: true
             show_source_link: true
-            # source_link_path: "https://github.com/your-username/your-repo/blob/main/project/models.py"
-            show_category_heading: false
+            separate_signature: true  # Tách chữ ký hàm
+            show_category_heading: false  # Không thêm tiêu đề danh mục tự động
+            # Vô hiệu hóa bảng:
+            line_length: 0  # Ngăn markdown bị format thành bảng
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -65,7 +67,7 @@ markdown_extensions:
   - pymdownx.superfences
   - tables
   - admonition
-  
+
   - pymdownx.tabbed:
       alternate_style: true  # Căn chỉnh đúng mức thụt lề
   - toc:
@@ -84,110 +86,10 @@ extra_css:
 
 nav:
   - Home: index.md
-  # - Structure: structure.md
-  - Test: api/src/models/classifiers/random_forest.md
-  - Evaluation:
-      - Classification Report: api/evaluation/classification_report.md
-  - API Reference: 
-      - Utils:
-        - Model handler: api/utils/model_handler.md
-        - Logger manager: api/utils/logger_manager.md
-        - Exception handler: api/utils/exception_handler.md
-
-
-
-
-
-
-
-
-
-
-
-
-
-# site_name: My Docs
-# repo_url: https://github.com/tranngoctai1010/Spam-Detector-ML
-
-# theme:
-#   name: material
-#   font: 
-#     text: Merriweather Sans
-#     code: Red Hat Mono
-#   icon:
-#     menu: material/view-dashboard
-#   logo: assets/logo.png
-#   favicon: assets/favicon.png
-#   features:
-#     - navigation.path  # Bật thanh điều hướng
-#     - content.code.copy
-#   palette:
-#     - scheme: slate
-#       toggle:
-#         icon: material/weather-sunny
-#         name: Switch to light mode
-#       primary: teal
-#       accent: amber
-#     - scheme: default
-#       toggle: 
-#         icon: material/weather-night
-#         name: Switch to dark mode
-#       primary: indigo
-#       accent: pink
-
-# plugins:
-#   - search
-#   - mkdocstrings:
-#       handlers:
-#         python:
-#           paths: [".."]
-#           options:
-#             show_source: false
-#             show_root_heading: true
-#             show_root_full_path: false
-#             show_signature: true
-#             show_signature_annotations: true
-#             merge_init_into_class: true
-#             docstring_style: numpy  # Dùng chuẩn NumPy
-#             docstring_section_style: list  # Hiển thị Parameters dưới dạng danh sách
-#             show_root_toc_entry: false
-#             show_bases: true
-#             show_source_link: true
-#             source_link_path: "https://github.com/tranngoctai1010/Spam-Detector-ML/blob/main/project/models.py"
-#             show_category_heading: false
-#             members_order: source
-
-# markdown_extensions:
-#   - pymdownx.highlight:
-#       anchor_linenums: true
-#       linenums: true
-#       pygments_style: monokai
-#   - pymdownx.superfences
-#   - tables
-#   - admonition
-#   - pymdownx.tabbed:
-#       alternate_style: true
-#   - toc:
-#       permalink: true
-#       title: "Table of Contents"
-#       toc_depth: 4
-
-# extra:
-#   generator: false
-#   social:
-#     - icon: material/file-document-outline
-#       link: https://yourwebsite.com
-
-# extra_css:
-#   - css/extra.css
-
-# nav:
-#   - Home: index.md
-#   - API Reference:
-#       - Test: api/src/models/classifiers/random_forest.md
-#       - Evaluation:
-#           - Classification Report: api/evaluation/classification_report.md
-#       - Utils:
-#           - Model Handler: api/utils/model_handler.md
-#           - Logger Manager: api/utils/logger_manager.md
-#           - Exception Handler: api/utils/exception_handler.md
+  - API Reference:
+    - Factory:
+      - Dynamic import: auto_ml/dynamic_import.md
+      # - Utils:
+      #   - Model handler: api/utils/model_handler.md
+      #   - Logger manager: api/utils/logger_manager.md
+      #   - Exception handler: api/utils/exception_handler.md

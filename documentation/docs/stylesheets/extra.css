@@ -109,17 +109,17 @@ hr {
 
 /* Điều chỉnh cho các thẻ con bên trong inline code, nếu có */
 .md-typeset code * {
-    font-size: 0.75em; /* Điều chỉnh cỡ chữ của tất cả các phần tử con bên trong inline code trở lại mặc định (1em) */
+    font-size: 0.95em; /* Điều chỉnh cỡ chữ của tất cả các phần tử con bên trong inline code trở lại mặc định (1em) */
 }
-
+ 
 /* Cấu hình cho các đoạn văn bản trong markdown */
 .md-typeset p {
-    font-size: 0.85em; /* Điều chỉnh cỡ chữ của đoạn văn bản, làm cho nó nhỏ hơn một chút để dễ đọc và không chiếm quá nhiều không gian */
+    font-size: 0.9em; /* Điều chỉnh cỡ chữ của đoạn văn bản, làm cho nó nhỏ hơn một chút để dễ đọc và không chiếm quá nhiều không gian */
 }
 
 /* Cấu hình cho các mục trong danh sách không có thứ tự */
 .md-typeset ul li {
-    font-size: 0.85em; /* Điều chỉnh cỡ chữ của các mục trong danh sách, làm cho nó nhỏ hơn để dễ nhìn */
+    font-size: 0.9em; /* Điều chỉnh cỡ chữ của các mục trong danh sách, làm cho nó nhỏ hơn để dễ nhìn */
 }
 
 
@@ -134,128 +134,3 @@ hr {
 
 
 
-
-/* Tùy chỉnh tiêu đề Parameters để có viền trắng đậm */
-.md-typeset .admonition.parameters .admonition-title {
-    font-weight: bold; /* Làm đậm tiêu đề */
-    color: #ffffff; /* Màu chữ trắng */
-    background-color: transparent; /* Không có nền màu */
-    border-top: 3px solid #ffffff; /* Viền trên trắng, dày */
-    border-bottom: 3px solid #ffffff; /* Viền dưới trắng, dày */
-    border-left: none; /* Xóa viền trái */
-    border-right: none; /* Xóa viền phải */
-    padding: 0.2em 0; /* Khoảng cách bên trong */
-    margin-bottom: 0.5em; /* Khoảng cách với danh sách tham số */
-}
-
-/* Tùy chỉnh phần Parameters để không có viền bọc toàn bộ */
-.md-typeset .admonition.parameters {
-    border: none; /* Xóa viền bọc toàn bộ */
-    background-color: transparent; /* Nền trong suốt */
-    padding: 0; /* Xóa padding mặc định */
-    margin: 1em 0; /* Khoảng cách bên ngoài */
-}
-
-/* Tùy chỉnh danh sách tham số */
-.md-typeset .admonition.parameters .md-typeset__table {
-    background-color: transparent; /* Xóa nền bảng */
-    border: none; /* Xóa viền bảng mặc định */
-}
-
-.md-typeset .admonition.parameters .md-typeset__table th,
-.md-typeset .admonition.parameters .md-typeset__table td {
-    border: none; /* Xóa viền của các ô trong bảng */
-    padding: 0.5em 1em; /* Khoảng cách bên trong */
-    font-family: monospace; /* Font chữ giống code */
-    color: #ffffff; /* Màu chữ trắng */
-}
-
-/* Tô màu cho kiểu dữ liệu (như int, str) và giá trị mặc định */
-.md-typeset .admonition.parameters .md-typeset__table code {
-    color: #88b8f6; /* Màu xanh lam nhạt giống sklearn */
-    background-color: transparent; /* Xóa nền của code */
-    font-weight: normal; /* Không làm đậm */
-}
-
-
-
-
-
-
-
-
-
-
-/* Xóa viền và nền của chữ ký */
-.md-typeset .doc-class .doc-heading code {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-size: 1.1em;
-    color: inherit;
-    font-family: inherit;
-}
-
-/* Tùy chỉnh thanh điều hướng */
-.md-breadcrumb {
-    font-size: 0.9em;
-    color: #b3b3b3;
-}
-
-.md-breadcrumb a {
-    color: #00c4b4;
-    text-decoration: none;
-}
-
-.md-breadcrumb a:hover {
-    text-decoration: underline;
-}
-
-
-
-.md-typeset .admonition.parameters {
-    font-family: monospace;
-}
-.md-typeset .admonition.parameters p {
-    margin-left: 1em;
-}
-
-
-
-
-
-/* Đảm bảo Parameters hiển thị dưới dạng danh sách */
-.md-typeset .admonition.parameters {
-    font-family: monospace;
-}
-
-/* Tùy chỉnh thụt lề và xuống dòng */
-.md-typeset .admonition.parameters p {
-    margin: 0.5em 0;
-    margin-left: 1em;
-}
-
-/* Xóa viền và nền của chữ ký */
-.md-typeset .doc-class .doc-heading code {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-size: 1.1em;
-    color: inherit;
-    font-family: inherit;
-}
-
-/* Tùy chỉnh thanh điều hướng */
-.md-breadcrumb {
-    font-size: 0.9em;
-    color: #b3b3b3;
-}
-
-.md-breadcrumb a {
-    color: #00c4b4;
-    text-decoration: none;
-}
-
-.md-breadcrumb a:hover {
-    text-decoration: underline;
-}

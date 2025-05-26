@@ -1,5 +1,6 @@
 pandas
 scikit-learn
+imbalanced-learn
 numpy
 joblib
 pyyaml
@@ -7,6 +8,18 @@ matplotlib
 pytest 
 pytest-mock
 tqdm
-beartype
+# beartype
 rich
-pydantic
+mlflow
+# pydantic
+odfpy
+mkdocs
+mkdocs-material
+pymdown-extensionspip 
+mkdocstrings'[python]'
+mkdocs-autodoc
+python -m scripts.train_pipeline
+logurus
+
+
+tabulate

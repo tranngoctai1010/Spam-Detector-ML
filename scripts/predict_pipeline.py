@@ -2,7 +2,7 @@
 import re
 
 # Internal imports 
-from src.utils.model_handler import ModelHandler
+from auto_ml.utils.model_handler import ModelHandler
 
 # Handle input email
 def handle_email_input(text) -> str:

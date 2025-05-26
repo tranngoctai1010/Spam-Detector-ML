@@ -1,5 +1,0 @@
-train_model.py:
-  process_function: ["process_emails"]
-  predictive_modeling: ["TrainClassification", "TrainRegression"]
-  folder_name: ["email_model"]
-  name: ["email"]             
