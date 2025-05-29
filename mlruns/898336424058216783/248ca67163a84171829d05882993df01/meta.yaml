@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/tranngoctai/Documents/Spam-Detector-ML/mlruns/898336424058216783/248ca67163a84171829d05882993df01/artifacts
+end_time: 1748422591962
+entry_point_name: ''
+experiment_id: '898336424058216783'
+lifecycle_stage: active
+run_id: 248ca67163a84171829d05882993df01
+run_name: big-loon-994
+run_uuid: 248ca67163a84171829d05882993df01
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748422590975
+status: 3
+tags: []
+user_id: tranngoctai

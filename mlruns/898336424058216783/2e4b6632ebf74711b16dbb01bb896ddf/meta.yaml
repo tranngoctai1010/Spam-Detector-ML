@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/tranngoctai/Documents/Spam-Detector-ML/mlruns/898336424058216783/2e4b6632ebf74711b16dbb01bb896ddf/artifacts
+end_time: 1748422588590
+entry_point_name: ''
+experiment_id: '898336424058216783'
+lifecycle_stage: active
+run_id: 2e4b6632ebf74711b16dbb01bb896ddf
+run_name: SVM
+run_uuid: 2e4b6632ebf74711b16dbb01bb896ddf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748422586248
+status: 3
+tags: []
+user_id: tranngoctai

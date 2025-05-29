@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/tranngoctai/Documents/Spam-Detector-ML/mlruns/411259715698186731/2d7af60cc79248a982028400964afd94/artifacts
+end_time: 1748421925020
+entry_point_name: ''
+experiment_id: '411259715698186731'
+lifecycle_stage: active
+run_id: 2d7af60cc79248a982028400964afd94
+run_name: smiling-elk-205
+run_uuid: 2d7af60cc79248a982028400964afd94
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748421923942
+status: 3
+tags: []
+user_id: tranngoctai

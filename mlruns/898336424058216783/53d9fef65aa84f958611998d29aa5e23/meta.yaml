@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/tranngoctai/Documents/Spam-Detector-ML/mlruns/898336424058216783/53d9fef65aa84f958611998d29aa5e23/artifacts
+end_time: 1748422586244
+entry_point_name: ''
+experiment_id: '898336424058216783'
+lifecycle_stage: active
+run_id: 53d9fef65aa84f958611998d29aa5e23
+run_name: RandomForest
+run_uuid: 53d9fef65aa84f958611998d29aa5e23
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748422579985
+status: 3
+tags: []
+user_id: tranngoctai

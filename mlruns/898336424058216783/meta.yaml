@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/tranngoctai/Documents/Spam-Detector-ML/mlruns/898336424058216783
+creation_time: 1748422579851
+experiment_id: '898336424058216783'
+last_update_time: 1748422579851
+lifecycle_stage: active
+name: multi_algo_gridsearch

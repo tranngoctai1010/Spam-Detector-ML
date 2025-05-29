@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/tranngoctai/Documents/Spam-Detector-ML/mlruns/898336424058216783/ae6565cbdd674f46b85e30b1552feca9/artifacts
+end_time: 1748422590970
+entry_point_name: ''
+experiment_id: '898336424058216783'
+lifecycle_stage: active
+run_id: ae6565cbdd674f46b85e30b1552feca9
+run_name: LogisticRegression
+run_uuid: ae6565cbdd674f46b85e30b1552feca9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748422588593
+status: 3
+tags: []
+user_id: tranngoctai

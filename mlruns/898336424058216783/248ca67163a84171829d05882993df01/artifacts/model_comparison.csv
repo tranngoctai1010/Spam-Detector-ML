@@ -1,0 +1,4 @@
+model_name,accuracy,training_time,best_params
+RandomForest,1.0,3.1962456703186035,"{'max_depth': None, 'n_estimators': 200}"
+SVM,1.0,0.028939247131347656,"{'C': 1, 'kernel': 'linear'}"
+LogisticRegression,1.0,0.08371949195861816,"{'C': 1, 'solver': 'lbfgs'}"

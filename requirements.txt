@@ -1,5 +1,7 @@
 pandas
 scikit-learn
+scikit-optimize
+optuna
 imbalanced-learn
 numpy
 joblib
@@ -9,17 +11,14 @@ pytest
 pytest-mock
 tqdm
 # beartype
-rich
+rich 
 mlflow
 # pydantic
 odfpy
 mkdocs
 mkdocs-material
-pymdown-extensionspip 
-mkdocstrings'[python]'
+pymdown-extensions
+mkdocstrings[python]
 mkdocs-autodoc
-python -m scripts.train_pipeline
-logurus
-
-
+loguru
 tabulate

@@ -1,5 +1,5 @@
-from .base_file_loader import BaseFileLoader
+from ._base import BaseSearchCV
 
 __all__ = [
-    "BaseFileLoader"
+    "BaseSearchCV"
 ]

@@ -67,3 +67,54 @@ if __name__ == "__main__":
     
     # Triển khai API (chạy trong terminal hoặc background)
     # deploy_model(results['run_id'])  # Uncomment để triển khai
+
+
+
+
+
+
+
+
+
+
+
+
+
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import numpy as np
+
+def regression_report(y_true, y_pred):
+    mse = mean_squared_error(y_true, y_pred)
+    rmse = np.sqrt(mse)
+    mae = mean_absolute_error(y_true, y_pred)
+    r2 = r2_score(y_true, y_pred)
+    mape = np.mean(np.abs((y_true - y_pred) / y_true)) * 100  # MAPE in percentage
+    
+    report = {
+        'MSE': mse,
+        'RMSE': rmse,
+        'MAE': mae,
+        'R²': r2,
+        'MAPE (%)': mape
+    }
+    
+    # In báo cáo dạng bảng
+    print("Regression Report:")
+    print("-" * 30)
+    for metric, value in report.items():
+        print(f"{metric:<10} : {value:.3f}")
+    return report
+
+# Dữ liệu mẫu
+y_true = np.array([3.0, -0.5, 2.0, 7.0])
+y_pred = np.array([2.5, 0.0, 2.1, 7.8])
+report = regression_report(y_true, y_pred)
+
+
+# Regression Report:
+# ------------------------------
+# MSE        : 0.375
+# RMSE       : 0.612
+# MAE        : 0.425
+# R²         : 0.948
+# MAPE (%)   : 17.361

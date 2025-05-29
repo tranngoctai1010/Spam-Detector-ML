@@ -1,6 +1,6 @@
-artifact_location: file:///Users/tranngoctai/Documents/MachineLearning/Spam-Detector-ML/mlruns/0
-creation_time: 1748144068408
+artifact_location: mlflow-artifacts:/0
+creation_time: 1748419096337
 experiment_id: '0'
-last_update_time: 1748144068408
+last_update_time: 1748419096337
 lifecycle_stage: active
 name: Default

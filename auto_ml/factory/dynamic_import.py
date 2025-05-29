@@ -81,7 +81,7 @@ class DynamicImportFactory:
         
         raise ValueError(f"Callable '{name}' not found in any module in {self.module_list}.")
 
-    def create(self, class_name: str, params: Dict[str, Any]) -> Any:
+    def create(self, class_name: str, params: Dict[str, Any] = {}) -> Any:
         """
         **Create an instance of a callable dynamically.**
 
